@@ -1,11 +1,1118 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://congresso-acipi-2026-832311617789.us-west1.run.app">
-    <title>Congresso ACIPI 2026</title>
-  </head>
-  <body>
-    <p>Redirigiendo... <a href="https://congresso-acipi-2026-832311617789.us-west1.run.app">Hacé clic aquí si no redirige.</a></p>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Interativo - 20º Congresso ACIPI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            /* Paleta de Cores - Metáfora do Rio */
+            --bg-light: #F8FAFC;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            
+            --river-source: #E0F2FE; /* Nascente - Azul claro */
+            --river-margins: #D97757; /* Margens - Terracota/Terra */
+            --river-rapids: #0284C7; /* Correnteza - Azul vibrante */
+            --river-sea: #1E3A8A; /* Mar - Azul profundo */
+            --gold: #D4AF37; /* Pódio/Excelência */
+            
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            
+            --sidebar-width: 280px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: var(--text-main);
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .logo { font-size: 1.3rem; line-height: 1.2; margin-bottom: 40px; color: white;}
+        .logo strong { font-weight: 800; display: block; }
+        .logo small { display: block; font-size: 0.75rem; font-weight: 400; color: #94A3B8; margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+        .nav-menu { list-style: none; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; position: relative;}
+        
+        /* Linha guia de navegação */
+        .nav-menu::before {
+            content: ''; position: absolute; top: 20px; bottom: 20px; left: 19px; width: 2px;
+            background: rgba(255,255,255,0.1); z-index: 0;
+        }
+
+        .nav-item { position: relative; z-index: 1; }
+        .nav-link {
+            display: flex; align-items: center; gap: 16px; padding: 12px 0; color: #94A3B8;
+            text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;
+        }
+
+        .nav-icon-wrapper {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--text-main);
+            border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active { color: white; }
+        .nav-link.active .nav-icon-wrapper { border-color: var(--river-rapids); background: var(--river-rapids); color: white; box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);}
+        .nav-link:hover .nav-icon-wrapper { border-color: var(--river-rapids); }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            position: relative;
+        }
+
+        /* SVG de fundo simulando o rio */
+        .river-bg {
+            position: fixed; top: 0; left: var(--sidebar-width); right: 0; bottom: 0;
+            z-index: -1; opacity: 0.03; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100,0 C200,300 -100,600 300,1000' stroke='%230F172A' stroke-width='40' fill='none' /%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* Cores de Fundo Específicas por Seção */
+        #nascente { background: linear-gradient(135deg, var(--bg-light) 0%, var(--river-source) 100%); }
+        #margens { background: var(--bg-light); }
+        #correnteza { background: var(--text-main); color: white; }
+        #mar { background: var(--river-sea); color: white; }
+
+        .content-container { max-width: 1000px; margin: 0 auto; width: 100%; }
+
+        .section-tag {
+            display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;
+        }
+        
+        .tag-blue { background: rgba(2, 132, 199, 0.1); color: var(--river-rapids); }
+        .tag-terra { background: rgba(217, 119, 87, 0.1); color: var(--river-margins); }
+        .tag-light { background: rgba(255, 255, 255, 0.1); color: var(--river-source); }
+        .tag-gold { background: rgba(212, 175, 55, 0.1); color: var(--gold); }
+
+        .speaker-header { display: flex; align-items: center; gap: 30px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .dark-section .speaker-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        .speaker-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid; box-shadow: var(--shadow-lg); transition: transform 0.3s;}
+        .speaker-img:hover { transform: scale(1.05) rotate(3deg); }
+        .img-tranjan { border-color: var(--river-margins); }
+        .img-sabina { border-color: var(--river-rapids); }
+        .img-gustavo { border-color: var(--gold); }
+
+        .speaker-info h2 { margin-bottom: 8px; font-size: 2.8rem; }
+        .speaker-info p.speaker-name { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;}
+        
+        /* Diferenciação Visual (Metáfora do Rio) */
+        #margens { background-color: #FFF7ED; background-image: radial-gradient(rgba(217, 119, 87, 0.15) 2px, transparent 2px); background-size: 30px 30px;}
+        #correnteza { background: linear-gradient(160deg, var(--text-main) 0%, #081225 100%); position: relative; overflow: hidden;}
+        #correnteza::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--river-rapids), transparent); box-shadow: 0 0 20px 2px var(--river-rapids); }
+        #mar { background: radial-gradient(circle at center 100%, #0B1E4D 0%, var(--river-sea) 100%); }
+
+        @media (max-width: 768px) {
+            .speaker-header { flex-direction: column; text-align: center; gap: 15px; }
+            .speaker-info h2 { font-size: 2.2rem; }
+        }
+
+        h2 { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1; }
+        .subtitle { font-size: 1.25rem; font-weight: 400; opacity: 0.8; margin-bottom: 40px; max-width: 700px; }
+        
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
+            color: var(--text-main);
+        }
+        
+        .dark-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .tabs-container { display: flex; gap: 30px; margin-top: 40px; }
+        .tabs-menu { display: flex; flex-direction: column; gap: 10px; min-width: 250px; }
+        .tab-btn {
+            background: transparent; border: 1px solid #E2E8F0; padding: 16px 20px; border-radius: 12px;
+            text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer;
+            transition: all 0.2s; display: flex; align-items: center; justify-content: space-between;
+        }
+        .tab-btn:hover { background: rgba(217, 119, 87, 0.05); border-color: var(--river-margins); color: var(--river-margins); }
+        .tab-btn.active { background: var(--river-margins); color: white; border-color: var(--river-margins); box-shadow: var(--shadow-sm); }
+        
+        .tab-content { flex-grow: 1; }
+        .tab-pane { display: none; animation: fadeIn 0.4s ease forwards; }
+        .tab-pane.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 30px;}
+        
+        .concept-box {
+            padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2); transition: transform 0.3s;
+        }
+        .concept-box:hover { transform: translateY(-5px); border-color: var(--river-rapids); }
+        .concept-box i { font-size: 2rem; color: var(--river-rapids); margin-bottom: 16px; display: block; }
+        .concept-box h4 { font-size: 1.1rem; margin-bottom: 8px; color: white; }
+        .concept-box p { font-size: 0.85rem; color: #94A3B8; }
+
+        /* Paradoxo Visual */
+        .paradox-flex { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; margin-bottom: 40px;}
+        .paradox-side { flex: 1; }
+        .paradox-vs { font-size: 2rem; font-weight: 300; opacity: 0.5; padding: 0 30px; }
+        
+        .stepper { display: flex; justify-content: space-between; position: relative; margin: 60px 0; padding-top: 20px; }
+        .stepper::before { content: ''; position: absolute; top: 35px; left: 0; right: 0; height: 2px; background: rgba(255,255,255,0.2); z-index: 0; }
+        .step { position: relative; z-index: 1; text-align: center; width: 150px; }
+        .step-circle { 
+            width: 32px; height: 32px; background: var(--river-sea); border: 2px solid var(--gold); border-radius: 50%;
+            margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: var(--gold);
+            font-size: 0.8rem; font-weight: bold; transition: all 0.3s;
+        }
+        .step:hover .step-circle { background: var(--gold); color: var(--river-sea); box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);}
+        .step-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #E2E8F0;}
+        
+        .highlight-quote { border-left: 4px solid var(--gold); padding-left: 20px; font-style: italic; font-size: 1.1rem; color: #E2E8F0; margin: 30px 0;}
+
+        /* Nuvem de Palavras */
+        .word-cloud-container {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;
+            padding: 60px 40px; background: rgba(2, 132, 199, 0.03); border-radius: 16px; border: 1px dashed rgba(2, 132, 199, 0.2);
+            margin-top: 20px;
+        }
+        .word-cloud-container span {
+            line-height: 1; transition: transform 0.3s ease; display: inline-block;
+        }
+        .word-cloud-container span:hover { transform: scale(1.05) rotate(-2deg); cursor: default;}
+        .w-huge { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
+        .w-large { font-size: 2rem; font-weight: 600; }
+        .w-medium { font-size: 1.4rem; font-weight: 500; }
+        .w-small { font-size: 1rem; font-weight: 400; }
+
+        /* Modificación: Botón toggle como pestaña pegada al panel */
+        .mobile-nav-toggle { display: none; }
+        
+        /* Modificación: Clases responsivas para el banner para evitar el zoom inicial en móviles */
+        .banner-save-date {
+            margin-top: 40px; background: rgba(212, 175, 55, 0.05);
+            border: 1px dashed rgba(212, 175, 55, 0.4); border-radius: 16px;
+            padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;
+            align-items: center; gap: 30px; transition: transform 0.3s;
+            max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .banner-save-date:hover { transform: translateY(-5px); }
+        .banner-text { text-align: left; flex: 1 1 200px; }
+        .banner-date {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--gold); padding: 18px 36px; border-radius: 50px;
+            color: var(--text-main); font-weight: 800; font-size: 1.25rem;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Estilos do Widget de Chat IACiper */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--river-rapids) 0%, var(--river-sea) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chat-widget-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            max-height: calc(100vh - 120px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .chat-window.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            background: var(--text-main);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+        }
+
+        .chat-header .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .chat-close-btn:hover { opacity: 1; }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            animation: fadeInMsg 0.3s ease forwards;
+        }
+
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-ai {
+            background: white;
+            color: var(--text-main);
+            border: 1px solid rgba(0,0,0,0.05);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg-user {
+            background: var(--river-rapids);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 16px; /* Modificado: 16px para evitar zoom automático en iOS/Android al hacer focus */
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--river-rapids);
+        }
+
+        .chat-send-btn {
+            background: var(--river-rapids);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chat-send-btn:hover {
+            background: var(--river-sea);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            width: fit-content;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #94A3B8;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        @media (max-width: 1024px) {
+            .tabs-container { flex-direction: column; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --sidebar-width: 0px; }
+            .mobile-nav-toggle { display: flex; }
+            .sidebar { transform: translateX(-100%); width: 280px; }
+            .sidebar.open { transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
+            .section { padding: 60px 20px; }
+            h2 { font-size: 2.2rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .paradox-flex { flex-direction: column; text-align: center; }
+            .paradox-vs { padding: 20px 0; transform: rotate(90deg); }
+            .stepper { flex-direction: column; gap: 30px; align-items: flex-start; margin: 30px 0; padding-top: 0;}
+            .stepper::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; }
+            /* Correção Responsiva no Stepper */
+            .step { display: flex; align-items: center; gap: 16px; width: 100% !important; text-align: left; }
+            .step-circle { margin: 0; flex-shrink: 0; }
+            
+            /* Ajuste do Chat no Mobile */
+            .chat-window {
+                width: calc(100% - 40px);
+                bottom: 85px;
+            }
+            
+            /* Modificación: Botón como pestaña dorada altamente visible en la esquina del panel */
+            .mobile-nav-toggle {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: -45px;
+                width: 45px;
+                height: 45px;
+                background: var(--gold);
+                color: var(--text-main);
+                border: none;
+                border-radius: 0 8px 8px 0;
+                box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 100;
+            }
+
+            /* Modificación: Banner Save the date adaptable y seguro en móvil para evitar zoom */
+            .banner-save-date {
+                padding: 20px;
+                justify-content: center;
+                text-align: center;
+            }
+            .banner-text {
+                text-align: center;
+                flex: 1 1 100%;
+            }
+            .banner-date {
+                font-size: 1.1rem;
+                padding: 12px 24px;
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar open" id="sidebar">
+        <!-- Modificación: Botón movido al interior para comportarse como pestaña del panel -->
+        <button class="mobile-nav-toggle" id="navToggle"><i class="ph ph-x"></i></button>
+
+        <!-- Modificação 1: Encabezado -->
+        <div class="logo">
+            <strong>20° Congresso empresarial ACIPI</strong>
+            <small>PESSOAS NO CENTRO</small>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#nascente" class="nav-link active">
+                    <div class="nav-icon-wrapper"><i class="ph ph-drop"></i></div>
+                    A Nascente (Visão)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#margens" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-path"></i></div>
+                    As Margens (Cultura)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#correnteza" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-waves"></i></div>
+                    A Correnteza (Transformação)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#mar" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-anchor"></i></div>
+                    O Mar (Disciplina)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#ecos" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-chats"></i></div>
+                    Ecos da Plateia
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#proximo" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-rocket-launch"></i></div>
+                    Rumo a 2027
+                </a>
+            </li>
+        </ul>
+        <div style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; flex-direction: column; gap: 20px;">
+            <img src="https://acipi.com.br/wp-content/uploads/2025/04/logo-acipi-topo.png" alt="Logo ACIPI" style="max-width: 130px; height: auto; object-fit: contain;">
+            <img src="https://acipi.com.br/wp-content/uploads/2026/03/logo-escola-de-negocios.png" alt="Logo Escola de Negócios ACIPI" style="max-width: 140px; height: auto; object-fit: contain;">
+        </div>
+    </aside>
+
+    <div class="river-bg"></div>
+
+    <main class="main-content">
+        
+        <section id="nascente" class="section">
+            <div class="content-container">
+                <span class="section-tag tag-blue">PESSOAS NO CENTRO</span>
+                <h2 style="color: var(--text-main);">O Futuro dos Negócios<br>é <span style="color: var(--river-rapids);">Humano e Artificial.</span></h2>
+                <p class="subtitle" style="color: var(--text-muted);">A jornada corporativa é como um rio: a organização tem sua <strong>nascente</strong> no coração e propósito do líder, ganha forma guiada pelas <strong>margens</strong> da sua cultura, exige antifragilidade humana para atravessar as <strong>turbulências</strong> do salto tecnológico e demanda disciplina inegociável para desaguar no <strong>mar</strong> do futuro.</p>
+
+                <!-- Nova Síntese Central -->
+                <div class="glass-card" style="margin-top: 40px; border-left: 4px solid var(--river-rapids);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--text-main);">A Grande Síntese do 20º Congresso</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 30px; color: var(--text-muted);">A jornada corporativa atual não é uma escolha binária entre adotar tecnologia ou focar em pessoas, mas sim a <strong>orquestração intencional de ambos</strong>. O diferencial não está na máquina que usamos, mas em quem somos enquanto operamos a máquina.</p>
+                    
+                    <div class="grid-3">
+                        <div style="padding: 24px; background: rgba(217, 119, 87, 0.05); border-radius: 12px; border: 1px solid rgba(217, 119, 87, 0.1);">
+                            <h4 style="color: var(--river-margins); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-users-three" style="font-size: 1.4rem;"></i> Liderança que Transborda</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Tudo nasce no líder. A empresa é reflexo da sua essência e presença. Um líder que escuta, se conecta e mantém a consciência sobre suas ações, inspira uma cultura ética e ambientes prósperos para todos.</p>
+                        </div>
+                        
+                        <div style="padding: 24px; background: rgba(2, 132, 199, 0.05); border-radius: 12px; border: 1px solid rgba(2, 132, 199, 0.1);">
+                            <h4 style="color: var(--river-rapids); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-cpu" style="font-size: 1.4rem;"></i> Antifragilidade no Caos</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">Em meio à velocidade da transformação tecnológica, a verdadeira força reside em nossa capacidade de nos adaptar e prosperar na turbulência. O humano é insubstituível na empatia, colaboração e pensamento crítico.</p>
+                        </div>
+
+                        <div style="padding: 24px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1);">
+                            <h4 style="color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-target" style="font-size: 1.4rem;"></i> Atitude que Define o Futuro</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">O destino final é construído pela disciplina no presente. O verdadeiro sucesso é a união do capricho na execução, do compromisso inegociável e da paz em atingir o seu máximo potencial todos os dias.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="margens" class="section">
+            <div class="content-container">
+                <div class="speaker-header">
+                    <img src="https://acipi.com.br/wp-content/uploads/2026/03/roberto-trazan.png" alt="Roberto Tranjan" class="speaker-img img-tranjan">
+                    <div class="speaker-info">
+                        <span class="section-tag tag-terra">A Cultura</span>
+                        <h2 style="color: var(--text-main);">As Margens que dão<br><span style="color: var(--river-margins);">Forma e Direção.</span></h2>
+                        <p class="speaker-name" style="color: var(--river-margins);">Roberto Tranjan</p>
+                    </div>
+                </div>
+
+                <p class="subtitle">"O fator limitante do desenvolvimento de uma empresa é a capacidade de sua liderança. As correntes fortes da atualidade exigem margens de cultura sólidas."</p>
+
+                <div class="glass-card">
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;"><em>Da velha economia (Seu Anselmo: tentar sobreviver, foco em corte de custos) para a nova mentalidade (<strong style="color: var(--text-main);">Metanoia</strong>: intenção de contribuir, foco nas relações).</em></p>
+                    
+                    <div class="tabs-container">
+                        <!-- Menu de Abas -->
+                        <div class="tabs-menu">
+                            <button class="tab-btn active" onclick="openTab(event, 'tab-excelencia')">
+                                1. Cultura de Excelência <i class="ph ph-caret-right"></i>
+                            </button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-resultados')">
+                                2. Cultura de Resultados <i class="ph ph-caret-right"></i>
+                            </button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-relacionamento')">
+                                3. Cultura de Relacionamento <i class="ph ph-caret-right"></i>
+                            </button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-aprendizado')">
+                                4. Cultura de Aprendizado <i class="ph ph-caret-right"></i>
+                            </button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-autonomia')">
+                                5. Cultura de Autonomia <i class="ph ph-caret-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Conteúdo das Abas -->
+                        <div class="tab-content">
+                            <div id="tab-excelencia" class="tab-pane active glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                                <h3 style="color: var(--river-margins); margin-bottom: 12px;">O "Para Quem?"</h3>
+                                <p>Não se pode ser excelente para todo mundo. O mercado não concorre mais produto com produto, mas foco com foco. O líder deve ser um "Farol" (luz direcionada) e não um "farolete" (espalha sem focar).</p>
+                                <p style="margin-top: 10px; font-weight: 500;">Evite a doença do "quaisquerismo".</p>
+                            </div>
+                            
+                            <div id="tab-resultados" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                                <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Nova Equação do Lucro</h3>
+                                <p>Faturamento e corte de despesas (visão de caixa) é uma métrica pobre. A verdadeira construção do resultado a longo prazo exige:</p>
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 20px; background: var(--bg-light); border-radius: 8px; margin-top: 15px; font-weight: 600;">
+                                    <span>Equipe Comprometida</span>
+                                    <i class="ph ph-plus"></i>
+                                    <span>Cliente Fidelizado</span>
+                                    <i class="ph ph-equals"></i>
+                                    <span style="color: var(--river-margins);">LUCRO REAL</span>
+                                </div>
+                            </div>
+
+                            <div id="tab-relacionamento" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                                <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Método A.I.A.</h3>
+                                <p>Toda vez que relações viram transações, as margens começam a ceder. A gestão humanizada exige presença genuína através das três vogais mágicas:</p>
+                                <ul style="margin-top: 15px; margin-left: 20px;">
+                                    <li><strong>Atenção:</strong> Escuta ativa sem telas. O contrário de presença não é ausência, é fragmentação.</li>
+                                    <li><strong>Interesse:</strong> Preocupar-se legitimamente com o outro.</li>
+                                    <li><strong>Amor:</strong> Cuidado genuíno que gera retenção e confiança.</li>
+                                </ul>
+                            </div>
+
+                            <div id="tab-aprendizado" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                                <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Líder Educador</h3>
+                                <p>Não busque pessoas prontas. O líder cria pessoas prontas calibando o nível do desafio conforme a aptidão (A Metáfora do Cachorro buscando o graveto).</p>
+                                <p style="margin-top: 10px;">"O bom jardineiro não rega as plantas por igual; ele sabe qual precisa de mais luz ou água."</p>
+                            </div>
+
+                            <div id="tab-autonomia" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                                <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Linha d'Água</h3>
+                                <p>Para que a equipe aja pelo cliente, é preciso descentralizar.</p>
+                                <p style="margin-top: 10px;"><strong>Metáfora do Barco:</strong> Permita furos (erros, tentativas) <em>acima</em> da linha d'água, onde a empresa não afunda. Proteja apenas o que está abaixo da linha d'água. Isso gera autonomia com segurança.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="correnteza" class="section dark-section">
+            <div class="content-container">
+                <div class="speaker-header">
+                    <img src="https://acipi.com.br/wp-content/uploads/2026/03/sabrina.png" alt="Sabina Deweik" class="speaker-img img-sabina">
+                    <div class="speaker-info">
+                        <span class="section-tag tag-light">A Transformação</span>
+                        <h2>Águas Turbulentas e<br><span style="color: var(--river-rapids);">O Super Ciclo Tecnológico.</span></h2>
+                        <p class="speaker-name" style="color: var(--river-rapids);">Sabina Deweik</p>
+                    </div>
+                </div>
+
+                <p class="subtitle" style="color: #94A3B8;">O avanço exponencial da Inteligência Artificial colide com o esgotamento emocional humano. É preciso Antifragilidade para prosperar pelo caos.</p>
+
+                <div class="paradox-flex dark-card">
+                    <div class="paradox-side">
+                        <h4 style="color: var(--river-rapids); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">Os Sintomas (As Pedras do Rio)</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>FOBO:</strong> O medo constante de ficar obsoleto.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Quiet Quitting:</strong> Desengajamento silencioso nas equipes.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Intimidade Artificial:</strong> Terceirização emocional para IAs (risco!).</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Dívida Cognitiva:</strong> Perda da musculatura do pensamento crítico.</li>
+                        </ul>
+                    </div>
+                    <div class="paradox-vs">X</div>
+                    <div class="paradox-side">
+                        <h4 style="color: var(--gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">O Antídoto Organizacional</h4>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Saúde Social:</strong> Criação intencional de rituais de conexão humana.</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Skill Flex:</strong> Focar nas habilidades em fluxo (aprender a aprender).</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Liderança Orquestradora:</strong> Reger humanos e algoritmos.</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Soberania Cognitiva:</strong> Discernimento, curadoria e profundidade.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 1.25rem; font-weight: 500; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Os 4 "Is" da Inteligência Humana (O que a máquina não faz)</h3>
+                <div class="grid-4">
+                    <div class="concept-box">
+                        <i class="ph ph-sparkle"></i>
+                        <h4>Intuição</h4>
+                        <p>A experiência humana consolidada que conecta milhares de padrões tácitos para melhores decisões.</p>
+                    </div>
+                    <div class="concept-box">
+                        <i class="ph ph-lightbulb"></i>
+                        <h4>Insight</h4>
+                        <p>Criar sentido e significado; ocorre no "entremeio" humano (relaxamento, esportes, fricção), não na pressão.</p>
+                    </div>
+                    <div class="concept-box">
+                        <i class="ph ph-cloud-sun"></i>
+                        <h4>Imaginação</h4>
+                        <p>Projetar futuros positivos através da "esperança ativa", descolonizando a mente de futuros distópicos.</p>
+                    </div>
+                    <div class="concept-box">
+                        <i class="ph ph-hammer"></i>
+                        <h4>Invenção</h4>
+                        <p>Criatividade genuína de criar o *novo*, tirar o abstrato e torná-lo concreto. IA só recicla dados do passado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mar" class="section dark-section">
+            <div class="content-container">
+                <div class="speaker-header">
+                    <img src="https://acipi.com.br/wp-content/uploads/2026/03/gustavo.png" alt="Gustavo Borges" class="speaker-img img-gustavo">
+                    <div class="speaker-info">
+                        <span class="section-tag tag-gold">A Disciplina</span>
+                        <h2>A Chegada ao Mar:<br><span style="color: var(--gold);">Atitude de Campeão.</span></h2>
+                        <p class="speaker-name" style="color: var(--gold);">Gustavo Borges</p>
+                    </div>
+                </div>
+
+                <p class="subtitle" style="color: #E2E8F0;">Resultado de pódio não combina com esforço de treino leve. A cura para a "Mediocridade Ambiciosa" é o foco e a repetição consistente rumo ao alto rendimento.</p>
+
+                <div class="dark-card glass-card" style="background: rgba(15, 23, 42, 0.4);">
+                    <div class="grid-2">
+                        <div>
+                            <h3 style="color: var(--gold); font-size: 1.3rem; margin-bottom: 16px;">O Alicerce: Capricho & Compromisso</h3>
+                            <p style="font-size: 0.95rem; margin-bottom: 16px; color: #E2E8F0;">Para nadar "43 milhões de metros" ao longo de uma carreira sem perder a direção, o atleta (e o executivo) precisa de bases ensinadas na infância:</p>
+                            <ul style="list-style: none; margin-bottom: 20px; font-size: 0.95rem;">
+                                <li style="margin-bottom: 10px;"><strong><i class="ph-fill ph-star" style="color: var(--gold);"></i> Capricho (Fazer o seu melhor):</strong> Fazer bonito, buscar a excelência. Não é perfeccionismo, é entrega máxima.</li>
+                                <li><strong><i class="ph-fill ph-handshake" style="color: var(--gold);"></i> Comprometimento:</strong> O pacto inegociável com um objetivo ou com alguém. Assumir a autorresponsabilidade do processo.</li>
+                            </ul>
+                            
+                            <p style="font-size: 0.95rem; color: #94A3B8;"><em>"Performance é função de Tempo (jornada) e Forma (como você constrói essa jornada). É sobre atingir o seu máximo potencial e ficar em paz com isso."</em></p>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h4 style="color: white; margin-bottom: 15px; font-size: 1.1rem;"><i class="ph ph-brain"></i> O que é Disciplina?</h4>
+                            <p style="font-size: 1.2rem; line-height: 1.6; color: #E2E8F0; font-weight: 300;">"Disciplina é a forma como você treina sua mente para fazer o que precisa ser feito."</p>
+                            
+                            <h4 style="color: white; margin-bottom: 10px; margin-top: 30px; font-size: 1.1rem;"><i class="ph ph-lightning"></i> O Poder da Atitude</h4>
+                            <p style="font-size: 0.9rem; color: #94A3B8;">50% das vitórias (ou vendas) acontecem apenas pela atitude de quem executa. A IA nunca vai encher o seu "tanque" de motivação. Essa é uma decisão 100% humana.</p>
+                        </div>
+                    </div>
+
+                    <!-- Fluxo Olímpico -->
+                    <div style="margin-top: 50px;">
+                        <h4 style="text-align: center; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.1em;">A Jornada Inegociável para o Pódio</h4>
+                        <div class="stepper">
+                            <div class="step">
+                                <div class="step-circle">1</div>
+                                <div class="step-title">Escolha</div>
+                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Ter foco no esporte certo</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">2</div>
+                                <div class="step-title">Preparação</div>
+                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Rotina insana e correção</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">3</div>
+                                <div class="step-title">Índice</div>
+                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Superar métricas base</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle">4</div>
+                                <div class="step-title">Eliminatórias</div>
+                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Passar pelos testes do mercado</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-circle"><i class="ph-fill ph-medal"></i></div>
+                                <div class="step-title">Pódio</div>
+                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Estar entre os Top 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecos" class="section" style="background-color: var(--bg-light);">
+            <div class="content-container">
+                <span class="section-tag tag-blue">Voz da Plateia</span>
+                <h2 style="color: var(--text-main);">O Pulso da Liderança</h2>
+                <p class="subtitle" style="color: var(--text-muted);">Mapeamento das inquietações, perguntas e conceitos mais latentes capturados via plataforma de interação durante a jornada do congresso.</p>
+
+                <div class="word-cloud-container">
+                    <span class="w-huge" style="color: var(--river-rapids);" title="Como a tecnologia e a IA impactam as rotinas e afetam a tomada de decisão no dia a dia.">Inteligência Artificial</span>
+                    <span class="w-medium" style="color: var(--river-margins);" title="A necessidade de sustentar valores sólidos e manter a coesão interna.">Cultura Organizacional</span>
+                    <span class="w-large" style="color: var(--gold);" title="O questionamento constante sobre a responsabilidade do líder em guiar as equipes.">Papel da Liderança</span>
+                    <span class="w-small" style="color: var(--text-muted);" title="A busca por estratégias práticas para motivar colaboradores e despertar comprometimento.">Engajamento e Retenção</span>
+                    <span class="w-medium" style="color: var(--river-sea);" title="A dificuldade de manter as equipes capacitadas no mundo da informação infinita.">Aprendizado e Atualização</span>
+                    <span class="w-large" style="color: var(--river-margins);" title="Os desafios de integrar, liderar e alinhar expectativas entre pessoas de diferentes idades.">Conflito de Gerações</span>
+                    <span class="w-huge" style="color: var(--text-main);" title="Inquietações sobre como preparar as empresas, líderes e crianças para os próximos anos.">O Futuro do Trabalho</span>
+                    <span class="w-small" style="color: var(--text-muted);" title="A reavaliação do que significa entregar resultados na era da automação.">Alta Performance e Produtividade</span>
+                    <span class="w-medium" style="color: var(--gold);" title="Os reflexos do excesso de tecnologia e cobrança: burnout e solidão corporativa.">Saúde Mental e Limites</span>
+                    <span class="w-large" style="color: var(--river-rapids);" title="Como preservar a intuição, vulnerabilidade, emoções e conexões autênticas.">Relações e Essência Humana</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="proximo" class="section dark-section" style="background: linear-gradient(135deg, var(--text-main) 0%, #081225 100%);">
+            <div class="content-container" style="text-align: center;">
+                <span class="section-tag tag-gold" style="margin-bottom: 20px;">A JORNADA CONTINUA</span>
+                <h2 style="color: white;">O Futuro é um <span style="color: var(--gold);">Ecossistema.</span></h2>
+                <p class="subtitle" style="color: #94A3B8; max-width: 800px; margin: 0 auto 50px;">O Congresso Empresarial ACIPI é um fluxo constante de evolução. Cada ano constrói a base necessária para o próximo salto de desenvolvimento da nossa comunidade empresarial.</p>
+
+                <!-- Trilha de Evolução dos Temas -->
+                <div class="stepper" style="margin-top: 20px; justify-content: center; gap: 20px; align-items: center;">
+                    
+                    <div class="step">
+                        <div class="step-circle" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); background: transparent;">'25</div>
+                        <div class="step-title" style="color: rgba(255,255,255,0.5);">A Nascente</div>
+                        <div style="font-size: 1.1rem; color: #94A3B8; font-weight: bold; margin-top: 8px;">Liderança</div>
+                    </div>
+                    
+                    <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
+                    
+                    <div class="step" style="width: 150px;">
+                        <div class="step-circle" style="border-color: var(--river-rapids); color: white; background: var(--river-rapids); box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);">'26</div>
+                        <div class="step-title" style="color: var(--river-rapids);">O Fluxo</div>
+                        <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Pessoas no Centro</div>
+                    </div>
+
+                    <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
+
+                    <div class="step" style="width: 150px;">
+                        <div class="step-circle" style="border-color: var(--gold); color: var(--navy-blue); background: var(--gold); transform: scale(1.2); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); margin-bottom: 20px;">'27</div>
+                        <div class="step-title" style="color: var(--gold);">O Oceano</div>
+                        <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Ecossistemas<br>de Negócios</div>
+                    </div>
+                </div>
+
+                <!-- Conclusão e Visão -->
+                <div class="glass-card dark-card" style="margin-top: 80px; max-width: 900px; margin-left: auto; margin-right: auto; border-left: 4px solid var(--gold); background: rgba(255,255,255,0.03); text-align: left;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--gold); display: flex; align-items: center; gap: 10px;">
+                        <i class="ph-fill ph-infinity"></i> O Poder da Conexão em Rede
+                    </h3>
+                    <p style="font-size: 1.1rem; line-height: 1.7; color: #E2E8F0;">
+                        Uma empresa trabalhando sozinha, guiada por uma boa <strong>Liderança</strong> (2025) e com foco genuíno em suas <strong>Pessoas</strong> (2026), tem total capacidade de alcançar excelentes resultados.<br><br>
+                        No entanto, quando essas empresas passam a operar de forma interconectada dentro de um <strong>Ecossistema de Negócios</strong> (2027) forte e colaborativo, a soma das partes supera o todo. Os resultados deixam de ser apenas bons e passam a ser <strong>inimagináveis</strong>. O futuro não é sobre competir isoladamente nas margens, mas sobre prosperar em rede no oceano de oportunidades.
+                    </p>
+                </div>
+
+                <!-- Modificación: Convite para 2027 implementando clases para prevenir overflow (zoom) -->
+                <div class="banner-save-date">
+                    <div class="banner-text">
+                        <span class="section-tag tag-gold" style="margin-bottom: 15px;">SAVE THE DATE</span>
+                        <h3 style="color: white; font-size: 1.8rem; margin-bottom: 5px;">21º Congresso Empresarial ACIPI</h3>
+                        <p style="color: var(--gold); font-size: 1.4rem; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Negócios: Ecossistemas que movimentam</p>
+                    </div>
+                    <div class="banner-date">
+                        <i class="ph ph-calendar-blank" style="font-size: 1.5rem;"></i> 8 e 9 de junho de 2027
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Widget Flotante do Chat (IACiper) -->
+    <button class="chat-widget-btn" id="chatWidgetBtn" title="Fale com a IACiper">
+        <i class="ph ph-robot"></i>
+    </button>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="title-wrapper">
+                <i class="ph-fill ph-robot" style="font-size: 1.4rem; color: var(--river-source);"></i>
+                IACiper - Assistente ACIPI
+            </div>
+            <button class="chat-close-btn" id="chatCloseBtn"><i class="ph ph-x"></i></button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message msg-ai">
+                Olá! Eu sou a <strong>IACiper</strong>, a inteligência artificial do 20º Congresso Empresarial ACIPI. 😊<br><br>
+                Posso te ajudar com resumos das palestras de Roberto Tranjan, Sabina Deweik ou Gustavo Borges, além de conceitos como Metanoia, Antifragilidade e os 4 Is da inovação. O que você gostaria de saber?
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Pergunte sobre o congresso..." autocomplete="off" />
+            <button id="chatSendBtn" class="chat-send-btn"><i class="ph-bold ph-paper-plane-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade do Menu Mobile
+        const navToggle = document.getElementById('navToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        navToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            // Modificación: Cambio dinámico del ícono al abrir y cerrar
+            const icon = navToggle.querySelector('i');
+            if (sidebar.classList.contains('open')) {
+                icon.className = 'ph ph-x';
+            } else {
+                icon.className = 'ph ph-list';
+            }
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                    navToggle.querySelector('i').className = 'ph ph-list';
+                }
+            });
+        });
+
+        // Funcionalidade de Abas (Cultura - Tranjan)
+        function openTab(evt, tabId) {
+            // Esconder todos os painéis
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Remover classe ativa de todos os botões
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar o painel atual e marcar botão como ativo
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // ScrollSpy Lógica: Atualizar link ativo no menu ao rolar
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Ajuste para ativar um pouco antes do meio da tela
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- LÓGICA DO CHATBOT (IACiper) COM GEMINI API ---
+        const chatWidgetBtn = document.getElementById('chatWidgetBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Alternar Visibilidade do Chat
+        chatWidgetBtn.addEventListener('click', () => {
+            chatWindow.classList.add('open');
+        });
+
+        chatCloseBtn.addEventListener('click', () => {
+            chatWindow.classList.remove('open');
+        });
+
+        // Função para Adicionar Mensagem na UI
+        function appendMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender === 'user' ? 'msg-user' : 'msg-ai');
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Função para Adicionar/Remover Indicador de Digitação
+        function showTypingIndicator() {
+            const indicatorDiv = document.createElement('div');
+            indicatorDiv.classList.add('typing-indicator');
+            indicatorDiv.id = 'typingIndicator';
+            indicatorDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            chatMessages.appendChild(indicatorDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicatorDiv = document.getElementById('typingIndicator');
+            if (indicatorDiv) {
+                indicatorDiv.remove();
+            }
+        }
+
+        // Configuração da API Gemini
+        const apiKey = ""; // A API Key será provida no ambiente de execução do Canvas
+        
+        // System Prompt carregado de contexto do evento
+        const systemPrompt = `
+        Você é a "IACiper", a assistente virtual e Inteligência Artificial oficial do 20º Congresso Empresarial ACIPI.
+        Você tem uma personalidade amigável, educada e inspiradora. O seu objetivo é ajudar o público do evento com informações e reflexões sobre as palestras. Responda no idioma em que o usuário perguntar (principalmente Português do Brasil ou Espanhol).
+        
+        Contexto do Congresso:
+        - Tema central: "Pessoas no Centro: O futuro dos negócios é humano e artificial."
+        - Metáfora do evento: A jornada de uma empresa é como um RIO (Nascente=Visão do líder, Margens=Cultura, Correnteza=Transformação/IA, Mar=Futuro/Disciplina).
+        
+        Principais Palestrantes e seus temas:
+        1. Roberto Tranjan (As Margens - Cultura Organizacional): Falou sobre a transição da "velha economia" (corte de custos, sobrevivência) para a nova mentalidade de "Metanoia" (intenção de contribuir). Trouxe o método A.I.A (Atenção, Interesse, Amor) e a equação do lucro: Equipe Comprometida + Cliente Fidelizado = Lucro Real.
+        2. Sabina Deweik (A Correnteza - O super ciclo tecnológico e IA): Falou sobre como a IA avança exponencialmente e causa FOBO (medo da obsolescência) e Quiet Quitting. Ensinou a "Antifragilidade" e os 4 Is humanos que a máquina não faz: Intuição, Insight, Imaginação e Invenção.
+        3. Gustavo Borges (O Mar - Disciplina e Atitude de Campeão): Nadou 43 milhões de metros. Falou que performance é função de Tempo e Forma. A base é Capricho (fazer o seu melhor) e Compromisso. "Disciplina é como você treina sua mente para fazer o que precisa ser feito".
+
+        Regras de Resposta:
+        - Seja concisa, não escreva textos muito longos a menos que o usuário peça.
+        - Relacione as perguntas do usuário com o conteúdo do congresso sempre que possível.
+        - Use emojis de forma moderada para manter o tom amigável.
+        `;
+
+        async function fetchGeminiWithRetry(userText, retries = 5) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const delays = [1000, 2000, 4000, 8000, 16000];
+
+            const payload = {
+                contents: [{ parts: [{ text: userText }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar essa informação no momento.";
+                } catch (error) {
+                    if (i === retries - 1) {
+                        console.error("Falha ao comunicar com a API após várias tentativas:", error);
+                        return "Desculpe, estou enfrentando uma pequena turbulência de rede (assim como as corredeiras do Rio!). Pode tentar perguntar novamente em alguns instantes?";
+                    }
+                    await new Promise(res => setTimeout(res, delays[i]));
+                }
+            }
+        }
+
+        // Lógica de Envio
+        async function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // 1. Mostrar mensagem do usuário
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            // 2. Mostrar "Digitando..."
+            showTypingIndicator();
+
+            // 3. Chamar API e mostrar resposta
+            const aiResponse = await fetchGeminiWithRetry(text);
+            hideTypingIndicator();
+            
+            // Formatando pequenos bolds do markdown para HTML se necessário
+            const formattedResponse = aiResponse.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            appendMessage(formattedResponse, 'ai');
+        }
+
+        chatSendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSend();
+            }
+        });
+
+    </script>
+</body>
 </html>
