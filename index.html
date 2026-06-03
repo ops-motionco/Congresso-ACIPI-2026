@@ -60,7 +60,7 @@
 
         .logo { font-size: 1.3rem; line-height: 1.2; margin-bottom: 40px; color: white;}
         .logo strong { font-weight: 800; display: block; }
-        .logo small { display: block; font-size: 0.75rem; font-weight: 400; color: #94A3B8; margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .logo small { display: block; font-size: 0.75rem; font-weight: 700; color: var(--river-rapids); margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
 
         .nav-menu { list-style: none; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; position: relative;}
         
@@ -115,6 +115,7 @@
         #margens { background: var(--bg-light); }
         #correnteza { background: var(--text-main); color: white; }
         #mar { background: var(--river-sea); color: white; }
+        #memorias { background: linear-gradient(180deg, var(--bg-light) 0%, #FFFFFF 100%); }
 
         .content-container { max-width: 1000px; margin: 0 auto; width: 100%; }
 
@@ -145,11 +146,6 @@
         #correnteza { background: linear-gradient(160deg, var(--text-main) 0%, #081225 100%); position: relative; overflow: hidden;}
         #correnteza::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--river-rapids), transparent); box-shadow: 0 0 20px 2px var(--river-rapids); }
         #mar { background: radial-gradient(circle at center 100%, #0B1E4D 0%, var(--river-sea) 100%); }
-
-        @media (max-width: 768px) {
-            .speaker-header { flex-direction: column; text-align: center; gap: 15px; }
-            .speaker-info h2 { font-size: 2.2rem; }
-        }
 
         h2 { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1; }
         .subtitle { font-size: 1.25rem; font-weight: 400; opacity: 0.8; margin-bottom: 40px; max-width: 700px; }
@@ -218,25 +214,7 @@
         
         .highlight-quote { border-left: 4px solid var(--gold); padding-left: 20px; font-style: italic; font-size: 1.1rem; color: #E2E8F0; margin: 30px 0;}
 
-        /* Nuvem de Palavras */
-        .word-cloud-container {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;
-            padding: 60px 40px; background: rgba(2, 132, 199, 0.03); border-radius: 16px; border: 1px dashed rgba(2, 132, 199, 0.2);
-            margin-top: 20px;
-        }
-        .word-cloud-container span {
-            line-height: 1; transition: transform 0.3s ease; display: inline-block;
-        }
-        .word-cloud-container span:hover { transform: scale(1.05) rotate(-2deg); cursor: default;}
-        .w-huge { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
-        .w-large { font-size: 2rem; font-weight: 600; }
-        .w-medium { font-size: 1.4rem; font-weight: 500; }
-        .w-small { font-size: 1rem; font-weight: 400; }
-
-        /* Modificación: Botón toggle como pestaña pegada al panel */
-        .mobile-nav-toggle { display: none; }
-        
-        /* Modificación: Clases responsivas para el banner para evitar el zoom inicial en móviles */
+        /* Banner Save the Date Horizontal */
         .banner-save-date {
             margin-top: 40px; background: rgba(212, 175, 55, 0.05);
             border: 1px dashed rgba(212, 175, 55, 0.4); border-radius: 16px;
@@ -386,7 +364,7 @@
             border: 1px solid #E2E8F0;
             border-radius: 20px;
             padding: 10px 15px;
-            font-size: 16px; /* Modificado: 16px para evitar zoom automático en iOS/Android al hacer focus */
+            font-size: 16px; /* Evita o zoom automático no iOS/Android */
             outline: none;
             transition: border-color 0.2s;
         }
@@ -441,6 +419,22 @@
             40% { transform: scale(1); }
         }
 
+        .word-cloud-container {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;
+            padding: 60px 40px; background: rgba(2, 132, 199, 0.03); border-radius: 16px; border: 1px dashed rgba(2, 132, 199, 0.2);
+            margin-top: 20px;
+        }
+        .word-cloud-container span {
+            line-height: 1; transition: transform 0.3s ease; display: inline-block;
+        }
+        .word-cloud-container span:hover { transform: scale(1.05) rotate(-2deg); cursor: default;}
+        .w-huge { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
+        .w-large { font-size: 2rem; font-weight: 600; }
+        .w-medium { font-size: 1.4rem; font-weight: 500; }
+        .w-small { font-size: 1rem; font-weight: 400; }
+
+        .mobile-nav-toggle { display: none; }
+        
         @media (max-width: 1024px) {
             .tabs-container { flex-direction: column; }
             .grid-4 { grid-template-columns: 1fr 1fr; }
@@ -448,7 +442,6 @@
 
         @media (max-width: 768px) {
             :root { --sidebar-width: 0px; }
-            .mobile-nav-toggle { display: flex; }
             .sidebar { transform: translateX(-100%); width: 280px; }
             .sidebar.open { transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
             .section { padding: 60px 20px; }
@@ -458,17 +451,13 @@
             .paradox-vs { padding: 20px 0; transform: rotate(90deg); }
             .stepper { flex-direction: column; gap: 30px; align-items: flex-start; margin: 30px 0; padding-top: 0;}
             .stepper::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; }
-            /* Correção Responsiva no Stepper */
             .step { display: flex; align-items: center; gap: 16px; width: 100% !important; text-align: left; }
             .step-circle { margin: 0; flex-shrink: 0; }
             
             /* Ajuste do Chat no Mobile */
-            .chat-window {
-                width: calc(100% - 40px);
-                bottom: 85px;
-            }
+            .chat-window { width: calc(100% - 40px); bottom: 85px; }
             
-            /* Modificación: Botón como pestaña dorada altamente visible en la esquina del panel */
+            /* Aba Dourada de Toggle no Mobile */
             .mobile-nav-toggle {
                 display: flex;
                 position: absolute;
@@ -488,31 +477,21 @@
                 z-index: 100;
             }
 
-            /* Modificación: Banner Save the date adaptable y seguro en móvil para evitar zoom */
+            /* Banner Save the date seguro em móvil */
             .banner-save-date {
-                padding: 20px;
-                justify-content: center;
-                text-align: center;
+                padding: 20px; justify-content: center; text-align: center;
             }
-            .banner-text {
-                text-align: center;
-                flex: 1 1 100%;
-            }
-            .banner-date {
-                font-size: 1.1rem;
-                padding: 12px 24px;
-                white-space: normal;
-            }
+            .banner-text { text-align: center; flex: 1 1 100%; }
+            .banner-date { font-size: 1.1rem; padding: 12px 24px; white-space: normal; }
         }
     </style>
 </head>
 <body>
 
     <aside class="sidebar open" id="sidebar">
-        <!-- Modificación: Botón movido al interior para comportarse como pestaña del panel -->
+        <!-- Aba de Toggle embutida no painel -->
         <button class="mobile-nav-toggle" id="navToggle"><i class="ph ph-x"></i></button>
 
-        <!-- Modificação 1: Encabezado -->
         <div class="logo">
             <strong>20° Congresso empresarial ACIPI</strong>
             <small>PESSOAS NO CENTRO</small>
@@ -549,6 +528,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="#memorias" class="nav-link">
+                    <div class="nav-icon-wrapper"><i class="ph ph-camera"></i></div>
+                    Fotos e Avaliação
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="#proximo" class="nav-link">
                     <div class="nav-icon-wrapper"><i class="ph ph-rocket-launch"></i></div>
                     Rumo a 2027
@@ -571,7 +556,6 @@
                 <h2 style="color: var(--text-main);">O Futuro dos Negócios<br>é <span style="color: var(--river-rapids);">Humano e Artificial.</span></h2>
                 <p class="subtitle" style="color: var(--text-muted);">A jornada corporativa é como um rio: a organização tem sua <strong>nascente</strong> no coração e propósito do líder, ganha forma guiada pelas <strong>margens</strong> da sua cultura, exige antifragilidade humana para atravessar as <strong>turbulências</strong> do salto tecnológico e demanda disciplina inegociável para desaguar no <strong>mar</strong> do futuro.</p>
 
-                <!-- Nova Síntese Central -->
                 <div class="glass-card" style="margin-top: 40px; border-left: 4px solid var(--river-rapids);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--text-main);">A Grande Síntese do 20º Congresso</h3>
                     <p style="font-size: 1.05rem; margin-bottom: 30px; color: var(--text-muted);">A jornada corporativa atual não é uma escolha binária entre adotar tecnologia ou focar em pessoas, mas sim a <strong>orquestração intencional de ambos</strong>. O diferencial não está na máquina que usamos, mas em quem somos enquanto operamos a máquina.</p>
@@ -593,7 +577,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
 
@@ -614,45 +597,27 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;"><em>Da velha economia (Seu Anselmo: tentar sobreviver, foco em corte de custos) para a nova mentalidade (<strong style="color: var(--text-main);">Metanoia</strong>: intenção de contribuir, foco nas relações).</em></p>
                     
                     <div class="tabs-container">
-                        <!-- Menu de Abas -->
                         <div class="tabs-menu">
-                            <button class="tab-btn active" onclick="openTab(event, 'tab-excelencia')">
-                                1. Cultura de Excelência <i class="ph ph-caret-right"></i>
-                            </button>
-                            <button class="tab-btn" onclick="openTab(event, 'tab-resultados')">
-                                2. Cultura de Resultados <i class="ph ph-caret-right"></i>
-                            </button>
-                            <button class="tab-btn" onclick="openTab(event, 'tab-relacionamento')">
-                                3. Cultura de Relacionamento <i class="ph ph-caret-right"></i>
-                            </button>
-                            <button class="tab-btn" onclick="openTab(event, 'tab-aprendizado')">
-                                4. Cultura de Aprendizado <i class="ph ph-caret-right"></i>
-                            </button>
-                            <button class="tab-btn" onclick="openTab(event, 'tab-autonomia')">
-                                5. Cultura de Autonomia <i class="ph ph-caret-right"></i>
-                            </button>
+                            <button class="tab-btn active" onclick="openTab(event, 'tab-excelencia')">1. Cultura de Excelência <i class="ph ph-caret-right"></i></button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-resultados')">2. Cultura de Resultados <i class="ph ph-caret-right"></i></button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-relacionamento')">3. Cultura de Relacionamento <i class="ph ph-caret-right"></i></button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-aprendizado')">4. Cultura de Aprendizado <i class="ph ph-caret-right"></i></button>
+                            <button class="tab-btn" onclick="openTab(event, 'tab-autonomia')">5. Cultura de Autonomia <i class="ph ph-caret-right"></i></button>
                         </div>
 
-                        <!-- Conteúdo das Abas -->
                         <div class="tab-content">
                             <div id="tab-excelencia" class="tab-pane active glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O "Para Quem?"</h3>
                                 <p>Não se pode ser excelente para todo mundo. O mercado não concorre mais produto com produto, mas foco com foco. O líder deve ser um "Farol" (luz direcionada) e não um "farolete" (espalha sem focar).</p>
                                 <p style="margin-top: 10px; font-weight: 500;">Evite a doença do "quaisquerismo".</p>
                             </div>
-                            
                             <div id="tab-resultados" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Nova Equação do Lucro</h3>
                                 <p>Faturamento e corte de despesas (visão de caixa) é uma métrica pobre. A verdadeira construção do resultado a longo prazo exige:</p>
                                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 20px; background: var(--bg-light); border-radius: 8px; margin-top: 15px; font-weight: 600;">
-                                    <span>Equipe Comprometida</span>
-                                    <i class="ph ph-plus"></i>
-                                    <span>Cliente Fidelizado</span>
-                                    <i class="ph ph-equals"></i>
-                                    <span style="color: var(--river-margins);">LUCRO REAL</span>
+                                    <span>Equipe Comprometida</span><i class="ph ph-plus"></i><span>Cliente Fidelizado</span><i class="ph ph-equals"></i><span style="color: var(--river-margins);">LUCRO REAL</span>
                                 </div>
                             </div>
-
                             <div id="tab-relacionamento" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Método A.I.A.</h3>
                                 <p>Toda vez que relações viram transações, as margens começam a ceder. A gestão humanizada exige presença genuína através das três vogais mágicas:</p>
@@ -662,13 +627,11 @@
                                     <li><strong>Amor:</strong> Cuidado genuíno que gera retenção e confiança.</li>
                                 </ul>
                             </div>
-
                             <div id="tab-aprendizado" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Líder Educador</h3>
                                 <p>Não busque pessoas prontas. O líder cria pessoas prontas calibando o nível do desafio conforme a aptidão (A Metáfora do Cachorro buscando o graveto).</p>
                                 <p style="margin-top: 10px;">"O bom jardineiro não rega as plantas por igual; ele sabe qual precisa de mais luz ou água."</p>
                             </div>
-
                             <div id="tab-autonomia" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Linha d'Água</h3>
                                 <p>Para que a equipe aja pelo cliente, é preciso descentralizar.</p>
@@ -717,26 +680,10 @@
 
                 <h3 style="font-size: 1.25rem; font-weight: 500; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Os 4 "Is" da Inteligência Humana (O que a máquina não faz)</h3>
                 <div class="grid-4">
-                    <div class="concept-box">
-                        <i class="ph ph-sparkle"></i>
-                        <h4>Intuição</h4>
-                        <p>A experiência humana consolidada que conecta milhares de padrões tácitos para melhores decisões.</p>
-                    </div>
-                    <div class="concept-box">
-                        <i class="ph ph-lightbulb"></i>
-                        <h4>Insight</h4>
-                        <p>Criar sentido e significado; ocorre no "entremeio" humano (relaxamento, esportes, fricção), não na pressão.</p>
-                    </div>
-                    <div class="concept-box">
-                        <i class="ph ph-cloud-sun"></i>
-                        <h4>Imaginação</h4>
-                        <p>Projetar futuros positivos através da "esperança ativa", descolonizando a mente de futuros distópicos.</p>
-                    </div>
-                    <div class="concept-box">
-                        <i class="ph ph-hammer"></i>
-                        <h4>Invenção</h4>
-                        <p>Criatividade genuína de criar o *novo*, tirar o abstrato e torná-lo concreto. IA só recicla dados do passado.</p>
-                    </div>
+                    <div class="concept-box"><i class="ph ph-sparkle"></i><h4>Intuição</h4><p>A experiência humana consolidada que conecta milhares de padrões tácitos para melhores decisões.</p></div>
+                    <div class="concept-box"><i class="ph ph-lightbulb"></i><h4>Insight</h4><p>Criar sentido e significado; ocorre no "entremeio" humano (relaxamento, esportes, fricção).</p></div>
+                    <div class="concept-box"><i class="ph ph-cloud-sun"></i><h4>Imaginação</h4><p>Projetar futuros positivos através da "esperança ativa", descolonizando a mente de distopias.</p></div>
+                    <div class="concept-box"><i class="ph ph-hammer"></i><h4>Invenção</h4><p>Criatividade genuína de criar o novo e tornar concreto. A IA só recicla dados do passado.</p></div>
                 </div>
             </div>
         </section>
@@ -758,53 +705,28 @@
                     <div class="grid-2">
                         <div>
                             <h3 style="color: var(--gold); font-size: 1.3rem; margin-bottom: 16px;">O Alicerce: Capricho & Compromisso</h3>
-                            <p style="font-size: 0.95rem; margin-bottom: 16px; color: #E2E8F0;">Para nadar "43 milhões de metros" ao longo de uma carreira sem perder a direção, o atleta (e o executivo) precisa de bases ensinadas na infância:</p>
+                            <p style="font-size: 0.95rem; margin-bottom: 16px; color: #E2E8F0;">Para nadar "43 milhões de metros" ao longo de uma carreira sem perder a direção, o atleta precisa de bases ensinadas na infância:</p>
                             <ul style="list-style: none; margin-bottom: 20px; font-size: 0.95rem;">
-                                <li style="margin-bottom: 10px;"><strong><i class="ph-fill ph-star" style="color: var(--gold);"></i> Capricho (Fazer o seu melhor):</strong> Fazer bonito, buscar a excelência. Não é perfeccionismo, é entrega máxima.</li>
-                                <li><strong><i class="ph-fill ph-handshake" style="color: var(--gold);"></i> Comprometimento:</strong> O pacto inegociável com um objetivo ou com alguém. Assumir a autorresponsabilidade do processo.</li>
+                                <li style="margin-bottom: 10px;"><strong><i class="ph-fill ph-star" style="color: var(--gold);"></i> Capricho (Fazer o seu melhor):</strong> Buscar a excelência. Não é perfeccionismo, é entrega máxima.</li>
+                                <li><strong><i class="ph-fill ph-handshake" style="color: var(--gold);"></i> Comprometimento:</strong> O pacto inegociável com um objetivo ou com alguém. Assumir a autorresponsabilidade.</li>
                             </ul>
-                            
-                            <p style="font-size: 0.95rem; color: #94A3B8;"><em>"Performance é função de Tempo (jornada) e Forma (como você constrói essa jornada). É sobre atingir o seu máximo potencial e ficar em paz com isso."</em></p>
                         </div>
-                        
                         <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
                             <h4 style="color: white; margin-bottom: 15px; font-size: 1.1rem;"><i class="ph ph-brain"></i> O que é Disciplina?</h4>
                             <p style="font-size: 1.2rem; line-height: 1.6; color: #E2E8F0; font-weight: 300;">"Disciplina é a forma como você treina sua mente para fazer o que precisa ser feito."</p>
-                            
                             <h4 style="color: white; margin-bottom: 10px; margin-top: 30px; font-size: 1.1rem;"><i class="ph ph-lightning"></i> O Poder da Atitude</h4>
-                            <p style="font-size: 0.9rem; color: #94A3B8;">50% das vitórias (ou vendas) acontecem apenas pela atitude de quem executa. A IA nunca vai encher o seu "tanque" de motivação. Essa é uma decisão 100% humana.</p>
+                            <p style="font-size: 0.9rem; color: #94A3B8;">50% das vitórias acontecem apenas pela atitude de quem executa. A IA nunca vai encher o seu "tanque" de motivação.</p>
                         </div>
                     </div>
 
-                    <!-- Fluxo Olímpico -->
                     <div style="margin-top: 50px;">
                         <h4 style="text-align: center; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.1em;">A Jornada Inegociável para o Pódio</h4>
                         <div class="stepper">
-                            <div class="step">
-                                <div class="step-circle">1</div>
-                                <div class="step-title">Escolha</div>
-                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Ter foco no esporte certo</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">2</div>
-                                <div class="step-title">Preparação</div>
-                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Rotina insana e correção</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">3</div>
-                                <div class="step-title">Índice</div>
-                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Superar métricas base</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle">4</div>
-                                <div class="step-title">Eliminatórias</div>
-                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Passar pelos testes do mercado</div>
-                            </div>
-                            <div class="step">
-                                <div class="step-circle"><i class="ph-fill ph-medal"></i></div>
-                                <div class="step-title">Pódio</div>
-                                <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px;">Estar entre os Top 3</div>
-                            </div>
+                            <div class="step"><div class="step-circle">1</div><div class="step-title">Escolha</div></div>
+                            <div class="step"><div class="step-circle">2</div><div class="step-title">Preparação</div></div>
+                            <div class="step"><div class="step-circle">3</div><div class="step-title">Índice</div></div>
+                            <div class="step"><div class="step-circle">4</div><div class="step-title">Eliminatórias</div></div>
+                            <div class="step"><div class="step-circle"><i class="ph-fill ph-medal"></i></div><div class="step-title">Pódio</div></div>
                         </div>
                     </div>
                 </div>
@@ -818,16 +740,51 @@
                 <p class="subtitle" style="color: var(--text-muted);">Mapeamento das inquietações, perguntas e conceitos mais latentes capturados via plataforma de interação durante a jornada do congresso.</p>
 
                 <div class="word-cloud-container">
-                    <span class="w-huge" style="color: var(--river-rapids);" title="Como a tecnologia e a IA impactam as rotinas e afetam a tomada de decisão no dia a dia.">Inteligência Artificial</span>
-                    <span class="w-medium" style="color: var(--river-margins);" title="A necessidade de sustentar valores sólidos e manter a coesão interna.">Cultura Organizacional</span>
-                    <span class="w-large" style="color: var(--gold);" title="O questionamento constante sobre a responsabilidade do líder em guiar as equipes.">Papel da Liderança</span>
-                    <span class="w-small" style="color: var(--text-muted);" title="A busca por estratégias práticas para motivar colaboradores e despertar comprometimento.">Engajamento e Retenção</span>
-                    <span class="w-medium" style="color: var(--river-sea);" title="A dificuldade de manter as equipes capacitadas no mundo da informação infinita.">Aprendizado e Atualização</span>
-                    <span class="w-large" style="color: var(--river-margins);" title="Os desafios de integrar, liderar e alinhar expectativas entre pessoas de diferentes idades.">Conflito de Gerações</span>
-                    <span class="w-huge" style="color: var(--text-main);" title="Inquietações sobre como preparar as empresas, líderes e crianças para os próximos anos.">O Futuro do Trabalho</span>
-                    <span class="w-small" style="color: var(--text-muted);" title="A reavaliação do que significa entregar resultados na era da automação.">Alta Performance e Produtividade</span>
-                    <span class="w-medium" style="color: var(--gold);" title="Os reflexos do excesso de tecnologia e cobrança: burnout e solidão corporativa.">Saúde Mental e Limites</span>
-                    <span class="w-large" style="color: var(--river-rapids);" title="Como preservar a intuição, vulnerabilidade, emoções e conexões autênticas.">Relações e Essência Humana</span>
+                    <span class="w-huge" style="color: var(--river-rapids);">Inteligência Artificial</span>
+                    <span class="w-medium" style="color: var(--river-margins);">Cultura Organizacional</span>
+                    <span class="w-large" style="color: var(--gold);">Papel da Liderança</span>
+                    <span class="w-small" style="color: var(--text-muted);">Engajamento e Retenção</span>
+                    <span class="w-medium" style="color: var(--river-sea);">Aprendizado e Atualização</span>
+                    <span class="w-large" style="color: var(--river-margins);">Conflito de Gerações</span>
+                    <span class="w-huge" style="color: var(--text-main);">O Futuro do Trabalho</span>
+                    <span class="w-small" style="color: var(--text-muted);">Alta Performance e Produtividade</span>
+                    <span class="w-medium" style="color: var(--gold);">Saúde Mental e Limites</span>
+                    <span class="w-large" style="color: var(--river-rapids);">Relações e Essência Humana</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nova Seção: Memórias e Feedback -->
+        <section id="memorias" class="section">
+            <div class="content-container">
+                <span class="section-tag tag-terra">REGISTROS E FEEDBACK</span>
+                <h2 style="color: var(--text-main);">A Sua Experiência em Foco</h2>
+                <p class="subtitle" style="color: var(--text-muted);">A travessia do 20º Congresso fica marcada pelas conexões reais que fizemos e pelo aprendizado contínuo. Reviva os momentos e ajude a construir o nosso próximo encontro.</p>
+
+                <div class="grid-2" style="margin-top: 40px;">
+                    <!-- Card Galeria de Fotos -->
+                    <div class="glass-card" style="display: flex; flex-direction: column; align-items: flex-start; border-left: 4px solid var(--river-rapids);">
+                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(2, 132, 199, 0.1); color: var(--river-rapids); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
+                            <i class="ph-fill ph-camera-plus"></i>
+                        </div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main);">Galeria de Fotos Oficial</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1;">Encontre os seus melhores momentos! Utilizamos uma IA de reconhecimento facial para facilitar a busca pelas suas fotos. Basta acessar a plataforma e enviar uma selfie.</p>
+                        <a href="https://isabelaborghese.fotop.com/fotos/eventos/index/evento/287842" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--river-rapids); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(2, 132, 199, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                            <i class="ph-bold ph-images"></i> Acessar Galeria
+                        </a>
+                    </div>
+
+                    <!-- Card Pesquisa de Satisfação -->
+                    <div class="glass-card" style="display: flex; flex-direction: column; align-items: flex-start; border-left: 4px solid var(--gold);">
+                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(212, 175, 55, 0.1); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
+                            <i class="ph-fill ph-star"></i>
+                        </div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main);">Pesquisa de Satisfação</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1;">A sua opinião é o que nos permite alinhar a rota e melhorar o nosso ecossistema. Leva apenas alguns minutos para compartilhar os seus insights com a nossa equipe.</p>
+                        <a href="https://forms.gle/jpuD8fg5MpVQEtkr9" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--text-main); padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+                            <i class="ph-bold ph-check-circle"></i> Avaliar Evento
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -838,33 +795,26 @@
                 <h2 style="color: white;">O Futuro é um <span style="color: var(--gold);">Ecossistema.</span></h2>
                 <p class="subtitle" style="color: #94A3B8; max-width: 800px; margin: 0 auto 50px;">O Congresso Empresarial ACIPI é um fluxo constante de evolução. Cada ano constrói a base necessária para o próximo salto de desenvolvimento da nossa comunidade empresarial.</p>
 
-                <!-- Trilha de Evolução dos Temas -->
                 <div class="stepper" style="margin-top: 20px; justify-content: center; gap: 20px; align-items: center;">
-                    
-                    <div class="step">
+                    <div class="step" style="width: 150px;">
                         <div class="step-circle" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); background: transparent;">'25</div>
                         <div class="step-title" style="color: rgba(255,255,255,0.5);">A Nascente</div>
                         <div style="font-size: 1.1rem; color: #94A3B8; font-weight: bold; margin-top: 8px;">Liderança</div>
                     </div>
-                    
                     <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
-                    
                     <div class="step" style="width: 150px;">
                         <div class="step-circle" style="border-color: var(--river-rapids); color: white; background: var(--river-rapids); box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);">'26</div>
                         <div class="step-title" style="color: var(--river-rapids);">O Fluxo</div>
                         <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Pessoas no Centro</div>
                     </div>
-
                     <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
-
                     <div class="step" style="width: 150px;">
-                        <div class="step-circle" style="border-color: var(--gold); color: var(--navy-blue); background: var(--gold); transform: scale(1.2); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); margin-bottom: 20px;">'27</div>
+                        <div class="step-circle" style="border-color: var(--gold); color: var(--text-main); background: var(--gold); transform: scale(1.2); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); margin-bottom: 20px;">'27</div>
                         <div class="step-title" style="color: var(--gold);">O Oceano</div>
                         <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Ecossistemas<br>de Negócios</div>
                     </div>
                 </div>
 
-                <!-- Conclusão e Visão -->
                 <div class="glass-card dark-card" style="margin-top: 80px; max-width: 900px; margin-left: auto; margin-right: auto; border-left: 4px solid var(--gold); background: rgba(255,255,255,0.03); text-align: left;">
                     <h3 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--gold); display: flex; align-items: center; gap: 10px;">
                         <i class="ph-fill ph-infinity"></i> O Poder da Conexão em Rede
@@ -875,7 +825,6 @@
                     </p>
                 </div>
 
-                <!-- Modificación: Convite para 2027 implementando clases para prevenir overflow (zoom) -->
                 <div class="banner-save-date">
                     <div class="banner-text">
                         <span class="section-tag tag-gold" style="margin-bottom: 15px;">SAVE THE DATE</span>
@@ -891,7 +840,7 @@
         </section>
 
     </main>
-    
+
     <!-- Widget Flotante do Chat (IACiper) -->
     <button class="chat-widget-btn" id="chatWidgetBtn" title="Fale com a IACiper">
         <i class="ph ph-robot"></i>
@@ -909,7 +858,7 @@
         <div class="chat-messages" id="chatMessages">
             <div class="message msg-ai">
                 Olá! Eu sou a <strong>IACiper</strong>, a inteligência artificial do 20º Congresso Empresarial ACIPI. 😊<br><br>
-                Posso te ajudar com resumos das palestras de Roberto Tranjan, Sabina Deweik ou Gustavo Borges, além de conceitos como Metanoia, Antifragilidade e os 4 Is da inovação. O que você gostaria de saber?
+                Posso te ajudar com resumos das palestras de Roberto Tranjan, Sabina Deweik ou Gustavo Borges. O que você gostaria de saber?
             </div>
         </div>
 
@@ -926,7 +875,6 @@
 
         navToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open');
-            // Modificación: Cambio dinámico del ícono al abrir y cerrar
             const icon = navToggle.querySelector('i');
             if (sidebar.classList.contains('open')) {
                 icon.className = 'ph ph-x';
@@ -947,19 +895,12 @@
 
         // Funcionalidade de Abas (Cultura - Tranjan)
         function openTab(evt, tabId) {
-            // Esconder todos os painéis
             const tabPanes = document.querySelectorAll('.tab-pane');
-            tabPanes.forEach(pane => {
-                pane.classList.remove('active');
-            });
+            tabPanes.forEach(pane => pane.classList.remove('active'));
 
-            // Remover classe ativa de todos os botões
             const tabBtns = document.querySelectorAll('.tab-btn');
-            tabBtns.forEach(btn => {
-                btn.classList.remove('active');
-            });
+            tabBtns.forEach(btn => btn.classList.remove('active'));
 
-            // Mostrar o painel atual e marcar botão como ativo
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
@@ -970,11 +911,9 @@
 
         window.addEventListener('scroll', () => {
             let current = '';
-            
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                // Ajuste para ativar um pouco antes do meio da tela
                 if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
                     current = section.getAttribute('id');
                 }
@@ -988,7 +927,7 @@
             });
         });
 
-        // --- LÓGICA DO CHATBOT (IACiper) COM GEMINI API ---
+        // LÓGICA DO CHATBOT (IACiper) COM GEMINI API
         const chatWidgetBtn = document.getElementById('chatWidgetBtn');
         const chatWindow = document.getElementById('chatWindow');
         const chatCloseBtn = document.getElementById('chatCloseBtn');
@@ -996,16 +935,9 @@
         const chatSendBtn = document.getElementById('chatSendBtn');
         const chatMessages = document.getElementById('chatMessages');
 
-        // Alternar Visibilidade do Chat
-        chatWidgetBtn.addEventListener('click', () => {
-            chatWindow.classList.add('open');
-        });
+        chatWidgetBtn.addEventListener('click', () => chatWindow.classList.add('open'));
+        chatCloseBtn.addEventListener('click', () => chatWindow.classList.remove('open'));
 
-        chatCloseBtn.addEventListener('click', () => {
-            chatWindow.classList.remove('open');
-        });
-
-        // Função para Adicionar Mensagem na UI
         function appendMessage(text, sender) {
             const msgDiv = document.createElement('div');
             msgDiv.classList.add('message', sender === 'user' ? 'msg-user' : 'msg-ai');
@@ -1014,7 +946,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Função para Adicionar/Remover Indicador de Digitação
         function showTypingIndicator() {
             const indicatorDiv = document.createElement('div');
             indicatorDiv.classList.add('typing-indicator');
@@ -1026,32 +957,24 @@
 
         function hideTypingIndicator() {
             const indicatorDiv = document.getElementById('typingIndicator');
-            if (indicatorDiv) {
-                indicatorDiv.remove();
-            }
+            if (indicatorDiv) indicatorDiv.remove();
         }
 
-        // Configuração da API Gemini
-        const apiKey = ""; // A API Key será provida no ambiente de execução do Canvas
-        
-        // System Prompt carregado de contexto do evento
+        const apiKey = ""; // Será preenchido pelo ambiente Immersive
         const systemPrompt = `
         Você é a "IACiper", a assistente virtual e Inteligência Artificial oficial do 20º Congresso Empresarial ACIPI.
-        Você tem uma personalidade amigável, educada e inspiradora. O seu objetivo é ajudar o público do evento com informações e reflexões sobre as palestras. Responda no idioma em que o usuário perguntar (principalmente Português do Brasil ou Espanhol).
+        Você tem uma personalidade amigável, educada e inspiradora. O seu objetivo é ajudar o público do evento com informações e reflexões sobre as palestras. Responda no idioma em que o usuário perguntar.
         
         Contexto do Congresso:
         - Tema central: "Pessoas no Centro: O futuro dos negócios é humano e artificial."
-        - Metáfora do evento: A jornada de uma empresa é como um RIO (Nascente=Visão do líder, Margens=Cultura, Correnteza=Transformação/IA, Mar=Futuro/Disciplina).
+        - Metáfora do evento: A jornada de uma empresa é como um RIO (Nascente=Visão, Margens=Cultura, Correnteza=Transformação/IA, Mar=Futuro/Disciplina).
         
-        Principais Palestrantes e seus temas:
-        1. Roberto Tranjan (As Margens - Cultura Organizacional): Falou sobre a transição da "velha economia" (corte de custos, sobrevivência) para a nova mentalidade de "Metanoia" (intenção de contribuir). Trouxe o método A.I.A (Atenção, Interesse, Amor) e a equação do lucro: Equipe Comprometida + Cliente Fidelizado = Lucro Real.
-        2. Sabina Deweik (A Correnteza - O super ciclo tecnológico e IA): Falou sobre como a IA avança exponencialmente e causa FOBO (medo da obsolescência) e Quiet Quitting. Ensinou a "Antifragilidade" e os 4 Is humanos que a máquina não faz: Intuição, Insight, Imaginação e Invenção.
-        3. Gustavo Borges (O Mar - Disciplina e Atitude de Campeão): Nadou 43 milhões de metros. Falou que performance é função de Tempo e Forma. A base é Capricho (fazer o seu melhor) e Compromisso. "Disciplina é como você treina sua mente para fazer o que precisa ser feito".
+        Principais Palestrantes:
+        1. Roberto Tranjan: Método A.I.A (Atenção, Interesse, Amor). Lucro Real = Equipe Comprometida + Cliente Fidelizado.
+        2. Sabina Deweik: Antifragilidade, saúde social e os 4 Is humanos (Intuição, Insight, Imaginação, Invenção).
+        3. Gustavo Borges: Disciplina, Capricho e Compromisso. "Disciplina é como você treina sua mente para fazer o que precisa ser feito".
 
-        Regras de Resposta:
-        - Seja concisa, não escreva textos muito longos a menos que o usuário peça.
-        - Relacione as perguntas do usuário com o conteúdo do congresso sempre que possível.
-        - Use emojis de forma moderada para manter o tom amigável.
+        Regras: Seja concisa, relacione as perguntas com o congresso sempre que possível.
         `;
 
         async function fetchGeminiWithRetry(userText, retries = 5) {
@@ -1074,43 +997,31 @@
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     
                     const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar essa informação no momento.";
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui processar a informação.";
                 } catch (error) {
-                    if (i === retries - 1) {
-                        console.error("Falha ao comunicar com a API após várias tentativas:", error);
-                        return "Desculpe, estou enfrentando uma pequena turbulência de rede (assim como as corredeiras do Rio!). Pode tentar perguntar novamente em alguns instantes?";
-                    }
+                    if (i === retries - 1) return "Desculpe, estou enfrentando uma pequena turbulência de rede. Pode tentar novamente?";
                     await new Promise(res => setTimeout(res, delays[i]));
                 }
             }
         }
 
-        // Lógica de Envio
         async function handleSend() {
             const text = chatInput.value.trim();
             if (!text) return;
 
-            // 1. Mostrar mensagem do usuário
             appendMessage(text, 'user');
             chatInput.value = '';
-
-            // 2. Mostrar "Digitando..."
             showTypingIndicator();
 
-            // 3. Chamar API e mostrar resposta
             const aiResponse = await fetchGeminiWithRetry(text);
             hideTypingIndicator();
-            
-            // Formatando pequenos bolds do markdown para HTML se necessário
             const formattedResponse = aiResponse.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             appendMessage(formattedResponse, 'ai');
         }
 
         chatSendBtn.addEventListener('click', handleSend);
         chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                handleSend();
-            }
+            if (e.key === 'Enter') handleSend();
         });
 
     </script>
