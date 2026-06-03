@@ -11,16 +11,16 @@
     
     <style>
         :root {
-            /* Paleta de Cores - Metáfora do Rio */
-            --bg-light: #F8FAFC;
-            --text-main: #0F172A;
+            /* Paleta de Cores - Identidade Visual (Negro, Celeste, Naranja) */
+            --bg-light: #F8FAFC; /* Fundo claro para seções de contraste */
+            --text-main: #111111; /* Negro/Gris muito escuro */
             --text-muted: #475569;
             
-            --river-source: #E0F2FE; /* Nascente - Azul claro */
-            --river-margins: #D97757; /* Margens - Terracota/Terra */
-            --river-rapids: #0284C7; /* Correnteza - Azul vibrante */
-            --river-sea: #1E3A8A; /* Mar - Azul profundo */
-            --gold: #D4AF37; /* Pódio/Excelência */
+            --river-source: #E0F2FE;
+            --river-margins: #FF7A00; /* Naranja vibrante */
+            --river-rapids: #00BFFF; /* Celeste brilhante */
+            --river-sea: #0A0A0A; /* Negro profundo para o mar/futuro */
+            --gold: #FF7A00; /* Mapeado para Laranja para manter a coesão da paleta de 3 cores */
             
             --glass-bg: rgba(255, 255, 255, 0.85);
             --glass-border: rgba(255, 255, 255, 0.3);
@@ -60,7 +60,7 @@
 
         .logo { font-size: 1.3rem; line-height: 1.2; margin-bottom: 40px; color: white;}
         .logo strong { font-weight: 800; display: block; }
-        .logo small { display: block; font-size: 0.75rem; font-weight: 700; color: var(--river-rapids); margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .logo small { display: block; font-size: 0.75rem; font-weight: 400; color: #94A3B8; margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
 
         .nav-menu { list-style: none; flex-grow: 1; display: flex; flex-direction: column; gap: 10px; position: relative;}
         
@@ -83,7 +83,7 @@
         }
 
         .nav-link:hover, .nav-link.active { color: white; }
-        .nav-link.active .nav-icon-wrapper { border-color: var(--river-rapids); background: var(--river-rapids); color: white; box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);}
+        .nav-link.active .nav-icon-wrapper { border-color: var(--river-rapids); background: var(--river-rapids); color: white; box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);}
         .nav-link:hover .nav-icon-wrapper { border-color: var(--river-rapids); }
 
         .main-content {
@@ -96,7 +96,7 @@
         .river-bg {
             position: fixed; top: 0; left: var(--sidebar-width); right: 0; bottom: 0;
             z-index: -1; opacity: 0.03; pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100,0 C200,300 -100,600 300,1000' stroke='%230F172A' stroke-width='40' fill='none' /%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100,0 C200,300 -100,600 300,1000' stroke='%23111111' stroke-width='40' fill='none' /%3E%3C/svg%3E");
             background-size: cover;
         }
 
@@ -111,11 +111,11 @@
         }
 
         /* Cores de Fundo Específicas por Seção */
-        #nascente { background: linear-gradient(135deg, var(--bg-light) 0%, var(--river-source) 100%); }
+        #nascente { background: var(--bg-light); }
         #margens { background: var(--bg-light); }
         #correnteza { background: var(--text-main); color: white; }
         #mar { background: var(--river-sea); color: white; }
-        #memorias { background: linear-gradient(180deg, var(--bg-light) 0%, #FFFFFF 100%); }
+        #memorias { background: var(--bg-light); }
 
         .content-container { max-width: 1000px; margin: 0 auto; width: 100%; }
 
@@ -124,10 +124,10 @@
             letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;
         }
         
-        .tag-blue { background: rgba(2, 132, 199, 0.1); color: var(--river-rapids); }
-        .tag-terra { background: rgba(217, 119, 87, 0.1); color: var(--river-margins); }
-        .tag-light { background: rgba(255, 255, 255, 0.1); color: var(--river-source); }
-        .tag-gold { background: rgba(212, 175, 55, 0.1); color: var(--gold); }
+        .tag-blue { background: rgba(0, 191, 255, 0.15); color: var(--river-rapids); }
+        .tag-terra { background: rgba(255, 122, 0, 0.15); color: var(--river-margins); }
+        .tag-light { background: rgba(255, 255, 255, 0.1); color: var(--river-rapids); }
+        .tag-gold { background: rgba(255, 122, 0, 0.15); color: var(--gold); }
 
         .speaker-header { display: flex; align-items: center; gap: 30px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(0,0,0,0.1); }
         .dark-section .speaker-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -141,11 +141,11 @@
         .speaker-info h2 { margin-bottom: 8px; font-size: 2.8rem; }
         .speaker-info p.speaker-name { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;}
         
-        /* Diferenciação Visual (Metáfora do Rio) */
-        #margens { background-color: #FFF7ED; background-image: radial-gradient(rgba(217, 119, 87, 0.15) 2px, transparent 2px); background-size: 30px 30px;}
-        #correnteza { background: linear-gradient(160deg, var(--text-main) 0%, #081225 100%); position: relative; overflow: hidden;}
+        /* Diferenciação Visual (Identidade Negra, Celeste e Laranja) */
+        #margens { background: radial-gradient(circle at center 100%, #1a1a1a 0%, var(--river-sea) 100%); }
+        #correnteza { background: linear-gradient(160deg, var(--text-main) 0%, #1a1a1a 100%); position: relative; overflow: hidden;}
         #correnteza::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--river-rapids), transparent); box-shadow: 0 0 20px 2px var(--river-rapids); }
-        #mar { background: radial-gradient(circle at center 100%, #0B1E4D 0%, var(--river-sea) 100%); }
+        #mar { background: radial-gradient(circle at center 100%, #1a1a1a 0%, var(--river-sea) 100%); }
 
         h2 { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1; }
         .subtitle { font-size: 1.25rem; font-weight: 400; opacity: 0.8; margin-bottom: 40px; max-width: 700px; }
@@ -162,7 +162,7 @@
         }
         
         .dark-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             color: white;
         }
@@ -174,9 +174,14 @@
             text-align: left; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer;
             transition: all 0.2s; display: flex; align-items: center; justify-content: space-between;
         }
-        .tab-btn:hover { background: rgba(217, 119, 87, 0.05); border-color: var(--river-margins); color: var(--river-margins); }
+        .tab-btn:hover { background: rgba(255, 122, 0, 0.05); border-color: var(--river-margins); color: var(--river-margins); }
         .tab-btn.active { background: var(--river-margins); color: white; border-color: var(--river-margins); box-shadow: var(--shadow-sm); }
         
+        /* Adições para a versão dark das abas */
+        .dark-section .tab-btn { border-color: rgba(255,255,255,0.1); color: #94A3B8; }
+        .dark-section .tab-btn:hover { background: rgba(255, 122, 0, 0.1); border-color: var(--river-margins); color: var(--river-margins); }
+        .dark-section .tab-btn.active { background: var(--river-margins); color: white; border-color: var(--river-margins); box-shadow: 0 0 15px rgba(255, 122, 0, 0.4); }
+
         .tab-content { flex-grow: 1; }
         .tab-pane { display: none; animation: fadeIn 0.4s ease forwards; }
         .tab-pane.active { display: block; }
@@ -189,14 +194,13 @@
         
         .concept-box {
             padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.2); transition: transform 0.3s;
+            background: rgba(0,0,0,0.4); transition: transform 0.3s;
         }
         .concept-box:hover { transform: translateY(-5px); border-color: var(--river-rapids); }
         .concept-box i { font-size: 2rem; color: var(--river-rapids); margin-bottom: 16px; display: block; }
         .concept-box h4 { font-size: 1.1rem; margin-bottom: 8px; color: white; }
         .concept-box p { font-size: 0.85rem; color: #94A3B8; }
 
-        /* Paradoxo Visual */
         .paradox-flex { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; margin-bottom: 40px;}
         .paradox-side { flex: 1; }
         .paradox-vs { font-size: 2rem; font-weight: 300; opacity: 0.5; padding: 0 30px; }
@@ -209,15 +213,12 @@
             margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: var(--gold);
             font-size: 0.8rem; font-weight: bold; transition: all 0.3s;
         }
-        .step:hover .step-circle { background: var(--gold); color: var(--river-sea); box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);}
+        .step:hover .step-circle { background: var(--gold); color: var(--river-sea); box-shadow: 0 0 15px rgba(255, 122, 0, 0.5);}
         .step-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #E2E8F0;}
         
-        .highlight-quote { border-left: 4px solid var(--gold); padding-left: 20px; font-style: italic; font-size: 1.1rem; color: #E2E8F0; margin: 30px 0;}
-
-        /* Banner Save the Date Horizontal */
         .banner-save-date {
-            margin-top: 40px; background: rgba(212, 175, 55, 0.05);
-            border: 1px dashed rgba(212, 175, 55, 0.4); border-radius: 16px;
+            margin-top: 40px; background: rgba(255, 122, 0, 0.05);
+            border: 1px dashed rgba(255, 122, 0, 0.4); border-radius: 16px;
             padding: 40px; display: flex; flex-wrap: wrap; justify-content: space-between;
             align-items: center; gap: 30px; transition: transform 0.3s;
             max-width: 900px; margin-left: auto; margin-right: auto;
@@ -226,12 +227,25 @@
         .banner-text { text-align: left; flex: 1 1 200px; }
         .banner-date {
             display: inline-flex; align-items: center; gap: 10px;
-            background: var(--gold); padding: 18px 36px; border-radius: 50px;
+            background: var(--river-rapids); padding: 18px 36px; border-radius: 50px;
             color: var(--text-main); font-weight: 800; font-size: 1.25rem;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.3);
         }
 
-        /* Estilos do Widget de Chat IACiper */
+        .word-cloud-container {
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;
+            padding: 60px 40px; background: rgba(0, 191, 255, 0.03); border-radius: 16px; border: 1px dashed rgba(0, 191, 255, 0.2);
+            margin-top: 20px;
+        }
+        .word-cloud-container span {
+            line-height: 1; transition: transform 0.3s ease; display: inline-block;
+        }
+        .word-cloud-container span:hover { transform: scale(1.05) rotate(-2deg); cursor: default;}
+        .w-huge { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
+        .w-large { font-size: 2rem; font-weight: 600; }
+        .w-medium { font-size: 1.4rem; font-weight: 500; }
+        .w-small { font-size: 1rem; font-weight: 400; }
+
         .chat-widget-btn {
             position: fixed;
             bottom: 20px;
@@ -239,10 +253,10 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--river-rapids) 0%, var(--river-sea) 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--river-rapids) 0%, #0088cc 100%);
+            color: var(--text-main);
             border: none;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
             cursor: pointer;
             z-index: 1000;
             display: flex;
@@ -254,7 +268,7 @@
 
         .chat-widget-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.6);
         }
 
         .chat-window {
@@ -346,7 +360,7 @@
 
         .msg-user {
             background: var(--river-rapids);
-            color: white;
+            color: var(--text-main);
             align-self: flex-end;
             border-bottom-right-radius: 4px;
         }
@@ -364,7 +378,7 @@
             border: 1px solid #E2E8F0;
             border-radius: 20px;
             padding: 10px 15px;
-            font-size: 16px; /* Evita o zoom automático no iOS/Android */
+            font-size: 16px; /* Evita zoom no mobile */
             outline: none;
             transition: border-color 0.2s;
         }
@@ -375,7 +389,7 @@
 
         .chat-send-btn {
             background: var(--river-rapids);
-            color: white;
+            color: var(--text-main);
             border: none;
             width: 40px;
             height: 40px;
@@ -388,7 +402,7 @@
         }
 
         .chat-send-btn:hover {
-            background: var(--river-sea);
+            background: #0088cc;
         }
 
         .typing-indicator {
@@ -414,25 +428,6 @@
         .dot:nth-child(1) { animation-delay: -0.32s; }
         .dot:nth-child(2) { animation-delay: -0.16s; }
 
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        .word-cloud-container {
-            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;
-            padding: 60px 40px; background: rgba(2, 132, 199, 0.03); border-radius: 16px; border: 1px dashed rgba(2, 132, 199, 0.2);
-            margin-top: 20px;
-        }
-        .word-cloud-container span {
-            line-height: 1; transition: transform 0.3s ease; display: inline-block;
-        }
-        .word-cloud-container span:hover { transform: scale(1.05) rotate(-2deg); cursor: default;}
-        .w-huge { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.02em; }
-        .w-large { font-size: 2rem; font-weight: 600; }
-        .w-medium { font-size: 1.4rem; font-weight: 500; }
-        .w-small { font-size: 1rem; font-weight: 400; }
-
         .mobile-nav-toggle { display: none; }
         
         @media (max-width: 1024px) {
@@ -442,45 +437,48 @@
 
         @media (max-width: 768px) {
             :root { --sidebar-width: 0px; }
-            .sidebar { transform: translateX(-100%); width: 280px; }
+            
+            /* Botón de Menú Superior Izquierdo, siempre visible */
+            .mobile-nav-toggle {
+                display: flex;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                width: 50px;
+                height: 50px;
+                background: var(--river-rapids); /* Celeste vibrante */
+                color: var(--text-main);
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                cursor: pointer;
+                z-index: 1001; /* Por encima del panel lateral */
+                transition: transform 0.3s;
+            }
+            .mobile-nav-toggle:active { transform: scale(0.9); }
+
+            /* Panel lateral inicia CERRADO por defecto y tiene padding para no tapar el logo con el botón */
+            .sidebar { transform: translateX(-100%); width: 280px; padding-top: 80px; z-index: 1000; }
             .sidebar.open { transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
-            .section { padding: 60px 20px; }
+            
+            /* Evitar que el contenido se pise con el botón superior */
+            .section { padding: 80px 20px 60px 20px; }
             h2 { font-size: 2.2rem; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
             .paradox-flex { flex-direction: column; text-align: center; }
             .paradox-vs { padding: 20px 0; transform: rotate(90deg); }
+            
             .stepper { flex-direction: column; gap: 30px; align-items: flex-start; margin: 30px 0; padding-top: 0;}
             .stepper::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; }
             .step { display: flex; align-items: center; gap: 16px; width: 100% !important; text-align: left; }
             .step-circle { margin: 0; flex-shrink: 0; }
             
-            /* Ajuste do Chat no Mobile */
             .chat-window { width: calc(100% - 40px); bottom: 85px; }
-            
-            /* Aba Dourada de Toggle no Mobile */
-            .mobile-nav-toggle {
-                display: flex;
-                position: absolute;
-                top: 20px;
-                right: -45px;
-                width: 45px;
-                height: 45px;
-                background: var(--gold);
-                color: var(--text-main);
-                border: none;
-                border-radius: 0 8px 8px 0;
-                box-shadow: 4px 0 10px rgba(0,0,0,0.15);
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                cursor: pointer;
-                z-index: 100;
-            }
 
-            /* Banner Save the date seguro em móvil */
-            .banner-save-date {
-                padding: 20px; justify-content: center; text-align: center;
-            }
+            .banner-save-date { padding: 20px; justify-content: center; text-align: center; }
             .banner-text { text-align: center; flex: 1 1 100%; }
             .banner-date { font-size: 1.1rem; padding: 12px 24px; white-space: normal; }
         }
@@ -488,10 +486,10 @@
 </head>
 <body>
 
-    <aside class="sidebar open" id="sidebar">
-        <!-- Aba de Toggle embutida no painel -->
-        <button class="mobile-nav-toggle" id="navToggle"><i class="ph ph-x"></i></button>
+    <!-- Botón visible en móviles (Esquina Superior Izquierda) -->
+    <button class="mobile-nav-toggle" id="navToggle"><i class="ph-bold ph-list"></i></button>
 
+    <aside class="sidebar" id="sidebar">
         <div class="logo">
             <strong>20° Congresso empresarial ACIPI</strong>
             <small>PESSOAS NO CENTRO</small>
@@ -561,17 +559,17 @@
                     <p style="font-size: 1.05rem; margin-bottom: 30px; color: var(--text-muted);">A jornada corporativa atual não é uma escolha binária entre adotar tecnologia ou focar em pessoas, mas sim a <strong>orquestração intencional de ambos</strong>. O diferencial não está na máquina que usamos, mas em quem somos enquanto operamos a máquina.</p>
                     
                     <div class="grid-3">
-                        <div style="padding: 24px; background: rgba(217, 119, 87, 0.05); border-radius: 12px; border: 1px solid rgba(217, 119, 87, 0.1);">
+                        <div style="padding: 24px; background: rgba(255, 122, 0, 0.05); border-radius: 12px; border: 1px solid rgba(255, 122, 0, 0.1);">
                             <h4 style="color: var(--river-margins); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-users-three" style="font-size: 1.4rem;"></i> Liderança que Transborda</h4>
                             <p style="font-size: 0.9rem; color: var(--text-muted);">Tudo nasce no líder. A empresa é reflexo da sua essência e presença. Um líder que escuta, se conecta e mantém a consciência sobre suas ações, inspira uma cultura ética e ambientes prósperos para todos.</p>
                         </div>
                         
-                        <div style="padding: 24px; background: rgba(2, 132, 199, 0.05); border-radius: 12px; border: 1px solid rgba(2, 132, 199, 0.1);">
+                        <div style="padding: 24px; background: rgba(0, 191, 255, 0.05); border-radius: 12px; border: 1px solid rgba(0, 191, 255, 0.1);">
                             <h4 style="color: var(--river-rapids); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-cpu" style="font-size: 1.4rem;"></i> Antifragilidade no Caos</h4>
                             <p style="font-size: 0.9rem; color: var(--text-muted);">Em meio à velocidade da transformação tecnológica, a verdadeira força reside em nossa capacidade de nos adaptar e prosperar na turbulência. O humano é insubstituível na empatia, colaboração e pensamento crítico.</p>
                         </div>
 
-                        <div style="padding: 24px; background: rgba(212, 175, 55, 0.05); border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.1);">
+                        <div style="padding: 24px; background: rgba(255, 122, 0, 0.05); border-radius: 12px; border: 1px solid rgba(255, 122, 0, 0.1);">
                             <h4 style="color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;"><i class="ph-fill ph-target" style="font-size: 1.4rem;"></i> Atitude que Define o Futuro</h4>
                             <p style="font-size: 0.9rem; color: var(--text-muted);">O destino final é construído pela disciplina no presente. O verdadeiro sucesso é a união do capricho na execução, do compromisso inegociável e da paz em atingir o seu máximo potencial todos os dias.</p>
                         </div>
@@ -580,21 +578,21 @@
             </div>
         </section>
 
-        <section id="margens" class="section">
+        <section id="margens" class="section dark-section">
             <div class="content-container">
                 <div class="speaker-header">
                     <img src="https://acipi.com.br/wp-content/uploads/2026/03/roberto-trazan.png" alt="Roberto Tranjan" class="speaker-img img-tranjan">
                     <div class="speaker-info">
                         <span class="section-tag tag-terra">A Cultura</span>
-                        <h2 style="color: var(--text-main);">As Margens que dão<br><span style="color: var(--river-margins);">Forma e Direção.</span></h2>
+                        <h2 style="color: white;">As Margens que dão<br><span style="color: var(--river-margins);">Forma e Direção.</span></h2>
                         <p class="speaker-name" style="color: var(--river-margins);">Roberto Tranjan</p>
                     </div>
                 </div>
 
-                <p class="subtitle">"O fator limitante do desenvolvimento de uma empresa é a capacidade de sua liderança. As correntes fortes da atualidade exigem margens de cultura sólidas."</p>
+                <p class="subtitle" style="color: #E2E8F0;">"O fator limitante do desenvolvimento de uma empresa é a capacidade de sua liderança. As correntes fortes da atualidade exigem margens de cultura sólidas."</p>
 
-                <div class="glass-card">
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;"><em>Da velha economia (Seu Anselmo: tentar sobreviver, foco em corte de custos) para a nova mentalidade (<strong style="color: var(--text-main);">Metanoia</strong>: intenção de contribuir, foco nas relações).</em></p>
+                <div class="dark-card glass-card" style="background: rgba(15, 23, 42, 0.4);">
+                    <p style="font-size: 0.9rem; color: #94A3B8; margin-bottom: 20px;"><em>Da velha economia (Seu Anselmo: tentar sobreviver, foco em corte de custos) para a nova mentalidade (<strong style="color: white;">Metanoia</strong>: intenção de contribuir, foco nas relações).</em></p>
                     
                     <div class="tabs-container">
                         <div class="tabs-menu">
@@ -606,36 +604,36 @@
                         </div>
 
                         <div class="tab-content">
-                            <div id="tab-excelencia" class="tab-pane active glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                            <div id="tab-excelencia" class="tab-pane active glass-card dark-card" style="box-shadow: none; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O "Para Quem?"</h3>
-                                <p>Não se pode ser excelente para todo mundo. O mercado não concorre mais produto com produto, mas foco com foco. O líder deve ser um "Farol" (luz direcionada) e não um "farolete" (espalha sem focar).</p>
-                                <p style="margin-top: 10px; font-weight: 500;">Evite a doença do "quaisquerismo".</p>
+                                <p style="color: #E2E8F0;">Não se pode ser excelente para todo mundo. O mercado não concorre mais produto com produto, mas foco com foco. O líder deve ser um "Farol" (luz direcionada) e não um "farolete" (espalha sem focar).</p>
+                                <p style="margin-top: 10px; font-weight: 500; color: white;">Evite a doença do "quaisquerismo".</p>
                             </div>
-                            <div id="tab-resultados" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                            <div id="tab-resultados" class="tab-pane glass-card dark-card" style="box-shadow: none; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Nova Equação do Lucro</h3>
-                                <p>Faturamento e corte de despesas (visão de caixa) é uma métrica pobre. A verdadeira construção do resultado a longo prazo exige:</p>
-                                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 20px; background: var(--bg-light); border-radius: 8px; margin-top: 15px; font-weight: 600;">
+                                <p style="color: #E2E8F0;">Faturamento e corte de despesas (visão de caixa) é uma métrica pobre. A verdadeira construção do resultado a longo prazo exige:</p>
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; margin-top: 15px; font-weight: 600; color: white;">
                                     <span>Equipe Comprometida</span><i class="ph ph-plus"></i><span>Cliente Fidelizado</span><i class="ph ph-equals"></i><span style="color: var(--river-margins);">LUCRO REAL</span>
                                 </div>
                             </div>
-                            <div id="tab-relacionamento" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                            <div id="tab-relacionamento" class="tab-pane glass-card dark-card" style="box-shadow: none; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Método A.I.A.</h3>
-                                <p>Toda vez que relações viram transações, as margens começam a ceder. A gestão humanizada exige presença genuína através das três vogais mágicas:</p>
-                                <ul style="margin-top: 15px; margin-left: 20px;">
+                                <p style="color: #E2E8F0;">Toda vez que relações viram transações, as margens começam a ceder. A gestão humanizada exige presença genuína através das três vogais mágicas:</p>
+                                <ul style="margin-top: 15px; margin-left: 20px; color: #E2E8F0;">
                                     <li><strong>Atenção:</strong> Escuta ativa sem telas. O contrário de presença não é ausência, é fragmentação.</li>
                                     <li><strong>Interesse:</strong> Preocupar-se legitimamente com o outro.</li>
                                     <li><strong>Amor:</strong> Cuidado genuíno que gera retenção e confiança.</li>
                                 </ul>
                             </div>
-                            <div id="tab-aprendizado" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                            <div id="tab-aprendizado" class="tab-pane glass-card dark-card" style="box-shadow: none; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">O Líder Educador</h3>
-                                <p>Não busque pessoas prontas. O líder cria pessoas prontas calibando o nível do desafio conforme a aptidão (A Metáfora do Cachorro buscando o graveto).</p>
-                                <p style="margin-top: 10px;">"O bom jardineiro não rega as plantas por igual; ele sabe qual precisa de mais luz ou água."</p>
+                                <p style="color: #E2E8F0;">Não busque pessoas prontas. O líder cria pessoas prontas calibando o nível do desafio conforme a aptidão (A Metáfora do Cachorro buscando o graveto).</p>
+                                <p style="margin-top: 10px; color: #E2E8F0;">"O bom jardineiro não rega as plantas por igual; ele sabe qual precisa de mais luz ou água."</p>
                             </div>
-                            <div id="tab-autonomia" class="tab-pane glass-card" style="box-shadow: none; border-color: rgba(0,0,0,0.05); background: white;">
+                            <div id="tab-autonomia" class="tab-pane glass-card dark-card" style="box-shadow: none; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);">
                                 <h3 style="color: var(--river-margins); margin-bottom: 12px;">A Linha d'Água</h3>
-                                <p>Para que a equipe aja pelo cliente, é preciso descentralizar.</p>
-                                <p style="margin-top: 10px;"><strong>Metáfora do Barco:</strong> Permita furos (erros, tentativas) <em>acima</em> da linha d'água, onde a empresa não afunda. Proteja apenas o que está abaixo da linha d'água. Isso gera autonomia com segurança.</p>
+                                <p style="color: #E2E8F0;">Para que a equipe aja pelo cliente, é preciso descentralizar.</p>
+                                <p style="margin-top: 10px; color: #E2E8F0;"><strong>Metáfora do Barco:</strong> Permita furos (erros, tentativas) <em>acima</em> da linha d'água, onde a empresa não afunda. Proteja apenas o que está abaixo da linha d'água. Isso gera autonomia com segurança.</p>
                             </div>
                         </div>
                     </div>
@@ -660,30 +658,30 @@
                     <div class="paradox-side">
                         <h4 style="color: var(--river-rapids); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">Os Sintomas (As Pedras do Rio)</h4>
                         <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
-                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>FOBO:</strong> O medo constante de ficar obsoleto.</li>
-                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Quiet Quitting:</strong> Desengajamento silencioso nas equipes.</li>
-                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Intimidade Artificial:</strong> Terceirização emocional para IAs (risco!).</li>
-                            <li><i class="ph-fill ph-warning" style="color: var(--terracotta); margin-right: 8px;"></i> <strong>Dívida Cognitiva:</strong> Perda da musculatura do pensamento crítico.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--river-margins); margin-right: 8px;"></i> <strong>FOBO:</strong> O medo constante de ficar obsoleto.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--river-margins); margin-right: 8px;"></i> <strong>Quiet Quitting:</strong> Desengajamento silencioso nas equipes.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--river-margins); margin-right: 8px;"></i> <strong>Intimidade Artificial:</strong> Terceirização emocional para IAs.</li>
+                            <li><i class="ph-fill ph-warning" style="color: var(--river-margins); margin-right: 8px;"></i> <strong>Dívida Cognitiva:</strong> Perda do pensamento crítico.</li>
                         </ul>
                     </div>
                     <div class="paradox-vs">X</div>
                     <div class="paradox-side">
                         <h4 style="color: var(--gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">O Antídoto Organizacional</h4>
                         <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
-                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Saúde Social:</strong> Criação intencional de rituais de conexão humana.</li>
-                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Skill Flex:</strong> Focar nas habilidades em fluxo (aprender a aprender).</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Saúde Social:</strong> Criação de rituais de conexão humana.</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Skill Flex:</strong> Focar nas habilidades em fluxo.</li>
                             <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Liderança Orquestradora:</strong> Reger humanos e algoritmos.</li>
-                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Soberania Cognitiva:</strong> Discernimento, curadoria e profundidade.</li>
+                            <li><i class="ph-fill ph-shield-check" style="color: var(--gold); margin-right: 8px;"></i> <strong>Soberania Cognitiva:</strong> Discernimento e curadoria.</li>
                         </ul>
                     </div>
                 </div>
 
                 <h3 style="font-size: 1.25rem; font-weight: 500; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Os 4 "Is" da Inteligência Humana (O que a máquina não faz)</h3>
                 <div class="grid-4">
-                    <div class="concept-box"><i class="ph ph-sparkle"></i><h4>Intuição</h4><p>A experiência humana consolidada que conecta milhares de padrões tácitos para melhores decisões.</p></div>
-                    <div class="concept-box"><i class="ph ph-lightbulb"></i><h4>Insight</h4><p>Criar sentido e significado; ocorre no "entremeio" humano (relaxamento, esportes, fricção).</p></div>
-                    <div class="concept-box"><i class="ph ph-cloud-sun"></i><h4>Imaginação</h4><p>Projetar futuros positivos através da "esperança ativa", descolonizando a mente de distopias.</p></div>
-                    <div class="concept-box"><i class="ph ph-hammer"></i><h4>Invenção</h4><p>Criatividade genuína de criar o novo e tornar concreto. A IA só recicla dados do passado.</p></div>
+                    <div class="concept-box"><i class="ph ph-sparkle"></i><h4>Intuição</h4><p>A experiência humana consolidada que conecta padrões tácitos para decisões.</p></div>
+                    <div class="concept-box"><i class="ph ph-lightbulb"></i><h4>Insight</h4><p>Criar sentido e significado; ocorre no "entremeio" humano (fricção).</p></div>
+                    <div class="concept-box"><i class="ph ph-cloud-sun"></i><h4>Imaginação</h4><p>Projetar futuros através da "esperança ativa", descolonizando a mente.</p></div>
+                    <div class="concept-box"><i class="ph ph-hammer"></i><h4>Invenção</h4><p>Criatividade genuína de criar o novo. A IA só recicla dados do passado.</p></div>
                 </div>
             </div>
         </section>
@@ -733,28 +731,27 @@
             </div>
         </section>
 
-        <section id="ecos" class="section" style="background-color: var(--bg-light);">
+        <section id="ecos" class="section" style="background-color: var(--river-rapids);">
             <div class="content-container">
-                <span class="section-tag tag-blue">Voz da Plateia</span>
+                <span class="section-tag" style="background: var(--text-main); color: var(--river-margins);">Voz da Plateia</span>
                 <h2 style="color: var(--text-main);">O Pulso da Liderança</h2>
-                <p class="subtitle" style="color: var(--text-muted);">Mapeamento das inquietações, perguntas e conceitos mais latentes capturados via plataforma de interação durante a jornada do congresso.</p>
+                <p class="subtitle" style="color: #111111; font-weight: 500;">Mapeamento das inquietações, perguntas e conceitos mais latentes capturados via plataforma de interação durante a jornada do congresso.</p>
 
-                <div class="word-cloud-container">
-                    <span class="w-huge" style="color: var(--river-rapids);">Inteligência Artificial</span>
+                <div class="word-cloud-container" style="background: rgba(0, 0, 0, 0.05); border: 1px dashed rgba(0, 0, 0, 0.2);">
+                    <span class="w-huge" style="color: var(--text-main);">Inteligência Artificial</span>
                     <span class="w-medium" style="color: var(--river-margins);">Cultura Organizacional</span>
-                    <span class="w-large" style="color: var(--gold);">Papel da Liderança</span>
-                    <span class="w-small" style="color: var(--text-muted);">Engajamento e Retenção</span>
-                    <span class="w-medium" style="color: var(--river-sea);">Aprendizado e Atualização</span>
+                    <span class="w-large" style="color: var(--text-main);">Papel da Liderança</span>
+                    <span class="w-small" style="color: #1a1a1a;">Engajamento e Retenção</span>
+                    <span class="w-medium" style="color: var(--text-main);">Aprendizado e Atualização</span>
                     <span class="w-large" style="color: var(--river-margins);">Conflito de Gerações</span>
                     <span class="w-huge" style="color: var(--text-main);">O Futuro do Trabalho</span>
-                    <span class="w-small" style="color: var(--text-muted);">Alta Performance e Produtividade</span>
-                    <span class="w-medium" style="color: var(--gold);">Saúde Mental e Limites</span>
-                    <span class="w-large" style="color: var(--river-rapids);">Relações e Essência Humana</span>
+                    <span class="w-small" style="color: #1a1a1a;">Alta Performance</span>
+                    <span class="w-medium" style="color: var(--river-margins);">Saúde Mental e Limites</span>
+                    <span class="w-large" style="color: var(--text-main);">Relações e Essência Humana</span>
                 </div>
             </div>
         </section>
 
-        <!-- Nova Seção: Memórias e Feedback -->
         <section id="memorias" class="section">
             <div class="content-container">
                 <span class="section-tag tag-terra">REGISTROS E FEEDBACK</span>
@@ -764,24 +761,24 @@
                 <div class="grid-2" style="margin-top: 40px;">
                     <!-- Card Galeria de Fotos -->
                     <div class="glass-card" style="display: flex; flex-direction: column; align-items: flex-start; border-left: 4px solid var(--river-rapids);">
-                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(2, 132, 199, 0.1); color: var(--river-rapids); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(0, 191, 255, 0.1); color: var(--river-rapids); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
                             <i class="ph-fill ph-camera-plus"></i>
                         </div>
                         <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main);">Galeria de Fotos Oficial</h3>
                         <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1;">Encontre os seus melhores momentos! Utilizamos uma IA de reconhecimento facial para facilitar a busca pelas suas fotos. Basta acessar a plataforma e enviar uma selfie.</p>
-                        <a href="https://isabelaborghese.fotop.com/fotos/eventos/index/evento/287842" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--river-rapids); color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(2, 132, 199, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                        <a href="https://isabelaborghese.fotop.com/fotos/eventos/index/evento/287842" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--river-rapids); color: var(--text-main); padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(0, 191, 255, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
                             <i class="ph-bold ph-images"></i> Acessar Galeria
                         </a>
                     </div>
 
                     <!-- Card Pesquisa de Satisfação -->
                     <div class="glass-card" style="display: flex; flex-direction: column; align-items: flex-start; border-left: 4px solid var(--gold);">
-                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(212, 175, 55, 0.1); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(255, 122, 0, 0.1); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px;">
                             <i class="ph-fill ph-star"></i>
                         </div>
                         <h3 style="font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main);">Pesquisa de Satisfação</h3>
                         <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1;">A sua opinião é o que nos permite alinhar a rota e melhorar o nosso ecossistema. Leva apenas alguns minutos para compartilhar os seus insights com a nossa equipe.</p>
-                        <a href="https://forms.gle/jpuD8fg5MpVQEtkr9" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--text-main); padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+                        <a href="https://forms.gle/jpuD8fg5MpVQEtkr9" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--text-main); padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3);" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
                             <i class="ph-bold ph-check-circle"></i> Avaliar Evento
                         </a>
                     </div>
@@ -789,7 +786,7 @@
             </div>
         </section>
 
-        <section id="proximo" class="section dark-section" style="background: linear-gradient(135deg, var(--text-main) 0%, #081225 100%);">
+        <section id="proximo" class="section dark-section" style="background: linear-gradient(135deg, var(--text-main) 0%, #050505 100%);">
             <div class="content-container" style="text-align: center;">
                 <span class="section-tag tag-gold" style="margin-bottom: 20px;">A JORNADA CONTINUA</span>
                 <h2 style="color: white;">O Futuro é um <span style="color: var(--gold);">Ecossistema.</span></h2>
@@ -803,13 +800,13 @@
                     </div>
                     <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
                     <div class="step" style="width: 150px;">
-                        <div class="step-circle" style="border-color: var(--river-rapids); color: white; background: var(--river-rapids); box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);">'26</div>
+                        <div class="step-circle" style="border-color: var(--river-rapids); color: var(--text-main); background: var(--river-rapids); box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);">'26</div>
                         <div class="step-title" style="color: var(--river-rapids);">O Fluxo</div>
                         <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Pessoas no Centro</div>
                     </div>
                     <i class="ph ph-arrow-right" style="color: rgba(255,255,255,0.2); font-size: 1.5rem; margin-top: -30px;"></i>
                     <div class="step" style="width: 150px;">
-                        <div class="step-circle" style="border-color: var(--gold); color: var(--text-main); background: var(--gold); transform: scale(1.2); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); margin-bottom: 20px;">'27</div>
+                        <div class="step-circle" style="border-color: var(--gold); color: var(--text-main); background: var(--gold); transform: scale(1.2); box-shadow: 0 0 20px rgba(255, 122, 0, 0.4); margin-bottom: 20px;">'27</div>
                         <div class="step-title" style="color: var(--gold);">O Oceano</div>
                         <div style="font-size: 1.1rem; color: white; font-weight: bold; margin-top: 8px;">Ecossistemas<br>de Negócios</div>
                     </div>
@@ -849,7 +846,7 @@
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
             <div class="title-wrapper">
-                <i class="ph-fill ph-robot" style="font-size: 1.4rem; color: var(--river-source);"></i>
+                <i class="ph-fill ph-robot" style="font-size: 1.4rem; color: var(--river-rapids);"></i>
                 IACiper - Assistente ACIPI
             </div>
             <button class="chat-close-btn" id="chatCloseBtn"><i class="ph ph-x"></i></button>
@@ -869,7 +866,7 @@
     </div>
 
     <script>
-        // Funcionalidade do Menu Mobile
+        // Funcionalidade do Menu Mobile (Esquina superior izquierda en móviles)
         const navToggle = document.getElementById('navToggle');
         const sidebar = document.getElementById('sidebar');
 
@@ -877,9 +874,9 @@
             sidebar.classList.toggle('open');
             const icon = navToggle.querySelector('i');
             if (sidebar.classList.contains('open')) {
-                icon.className = 'ph ph-x';
+                icon.className = 'ph-bold ph-x';
             } else {
-                icon.className = 'ph ph-list';
+                icon.className = 'ph-bold ph-list';
             }
         });
 
@@ -888,7 +885,7 @@
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     sidebar.classList.remove('open');
-                    navToggle.querySelector('i').className = 'ph ph-list';
+                    navToggle.querySelector('i').className = 'ph-bold ph-list';
                 }
             });
         });
@@ -960,7 +957,7 @@
             if (indicatorDiv) indicatorDiv.remove();
         }
 
-        const apiKey = ""; // Será preenchido pelo ambiente Immersive
+        const apiKey = ""; 
         const systemPrompt = `
         Você é a "IACiper", a assistente virtual e Inteligência Artificial oficial do 20º Congresso Empresarial ACIPI.
         Você tem uma personalidade amigável, educada e inspiradora. O seu objetivo é ajudar o público do evento com informações e reflexões sobre as palestras. Responda no idioma em que o usuário perguntar.
@@ -972,9 +969,7 @@
         Principais Palestrantes:
         1. Roberto Tranjan: Método A.I.A (Atenção, Interesse, Amor). Lucro Real = Equipe Comprometida + Cliente Fidelizado.
         2. Sabina Deweik: Antifragilidade, saúde social e os 4 Is humanos (Intuição, Insight, Imaginação, Invenção).
-        3. Gustavo Borges: Disciplina, Capricho e Compromisso. "Disciplina é como você treina sua mente para fazer o que precisa ser feito".
-
-        Regras: Seja concisa, relacione as perguntas com o congresso sempre que possível.
+        3. Gustavo Borges: Disciplina, Capricho e Compromisso.
         `;
 
         async function fetchGeminiWithRetry(userText, retries = 5) {
