@@ -464,23 +464,35 @@
             .sidebar { transform: translateX(-100%); width: 280px; padding-top: 80px; z-index: 1000; }
             .sidebar.open { transform: translateX(0); box-shadow: 10px 0 30px rgba(0,0,0,0.5); }
             
-            /* Evitar que el contenido se pise con el botón superior */
-            .section { padding: 80px 20px 60px 20px; }
-            h2 { font-size: 2.2rem; }
+            /* Evitar que el contenido se pise con el botón superior e impedir el overflow */
+            .section { padding: 80px 20px 60px 20px; max-width: 100vw; overflow: hidden; }
+            .content-container { max-width: 100%; padding: 0; }
+            h2 { font-size: 2.2rem; word-break: break-word; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
             .paradox-flex { flex-direction: column; text-align: center; }
-            .paradox-vs { padding: 20px 0; transform: rotate(90deg); }
+            .paradox-vs { padding: 20px 0; transform: rotate(90deg); display: inline-block; }
             
-            .stepper { flex-direction: column; gap: 30px; align-items: flex-start; margin: 30px 0; padding-top: 0;}
+            /* Contenedores asegurados al 100% */
+            .stepper { flex-direction: column; gap: 20px; align-items: flex-start; margin: 30px 0; padding-top: 0; width: 100%; }
             .stepper::before { top: 0; bottom: 0; left: 15px; width: 2px; height: auto; }
             .step { display: flex; align-items: center; gap: 16px; width: 100% !important; text-align: left; }
             .step-circle { margin: 0; flex-shrink: 0; }
             
+            /* Rotación segura de flechas para que no desborden */
+            .ph-arrow-right { transform: rotate(90deg); margin: 0 0 0 8px !important; }
+            
             .chat-window { width: calc(100% - 40px); bottom: 85px; }
 
-            .banner-save-date { padding: 20px; justify-content: center; text-align: center; }
+            .banner-save-date { padding: 20px 15px; justify-content: center; text-align: center; width: 100%; box-sizing: border-box; }
             .banner-text { text-align: center; flex: 1 1 100%; }
-            .banner-date { font-size: 1.1rem; padding: 12px 24px; white-space: normal; }
+            .banner-date { font-size: 1.1rem; padding: 12px 20px; white-space: normal; height: auto; display: flex; text-align: center;}
+            
+            .word-cloud-container { padding: 30px 15px; }
+            .w-huge { font-size: 2rem; }
+            .w-large { font-size: 1.6rem; }
+            .w-medium { font-size: 1.2rem; }
+            
+            .tabs-menu { min-width: 100%; }
         }
     </style>
 </head>
